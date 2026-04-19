@@ -1,0 +1,13 @@
+---
+title: "Writes done Right: Atomicity and Idempotency with Redis, Lua, and Go"
+date: "2025-11-04"
+readTime: "11 min"
+tags: ["Go", "Redis", "Reliability"]
+cover: "/assets/blog/writes-right.jpg"
+excerpt: "How to avoid double-processing and broken writes with simple idempotency patterns."
+featured: false
+---
+
+## Core idea
+
+Use request keys, Lua guards, and safe retry semantics to make writes predictable.
