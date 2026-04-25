@@ -15,7 +15,7 @@ function rgbToHex(r: number, g: number, b: number) {
   return `#${c(r)}${c(g)}${c(b)}`;
 }
 
-export function mixHex(a: string, b: string, t: number): string {
+function mixHex(a: string, b: string, t: number): string {
   const A = hexToRgb(a);
   const B = hexToRgb(b);
   if (!A || !B) return a;
@@ -23,7 +23,7 @@ export function mixHex(a: string, b: string, t: number): string {
 }
 
 /** Slight per-spine hue/lightness shift so neighbors differ authentically */
-export function variedSpineBase(base: string, index: number, sectionId: string): string {
+function variedSpineBase(base: string, index: number, sectionId: string): string {
   const seed = (index * 17 + sectionId.charCodeAt(0) * 3 + sectionId.length * 11) % 21;
   const delta = seed - 10; // roughly -10..+10
   const rgb = hexToRgb(base);
@@ -32,7 +32,7 @@ export function variedSpineBase(base: string, index: number, sectionId: string):
   return rgbToHex(f(rgb.r), f(rgb.g), f(rgb.b));
 }
 
-export type CategoryShelfTheme = {
+type CategoryShelfTheme = {
   /** Wood / ledge under spines */
   railBg: string;
   railEdge: string;
@@ -42,36 +42,36 @@ export type CategoryShelfTheme = {
   labelClass: string;
 };
 
-export const CATEGORY_SHELF_THEMES: Record<string, CategoryShelfTheme> = {
+const CATEGORY_SHELF_THEMES: Record<string, CategoryShelfTheme> = {
   sys: {
-    railBg: "linear-gradient(180deg, #1e1610 0%, #120e0a 100%)",
-    railEdge: "#5c4a36",
+    railBg: "linear-gradient(180deg, #5a3c24 0%, #3b2618 48%, #26180f 100%)",
+    railEdge: "#8a623f",
     rowShadow: "0 10px 24px rgba(10, 24, 48, 0.35)",
-    labelClass: "text-sky-300/90",
+    labelClass: "text-white",
   },
   lang: {
-    railBg: "linear-gradient(180deg, #2a1810 0%, #180e08 100%)",
-    railEdge: "#6b4e38",
+    railBg: "linear-gradient(180deg, #654229 0%, #442a19 48%, #2a1a10 100%)",
+    railEdge: "#956948",
     rowShadow: "0 10px 22px rgba(48, 24, 8, 0.38)",
-    labelClass: "text-amber-200/85",
+    labelClass: "text-white",
   },
   cs: {
-    railBg: "linear-gradient(180deg, #1c1224 0%, #100818 100%)",
-    railEdge: "#5a4068",
+    railBg: "linear-gradient(180deg, #5e3c24 0%, #3d2818 48%, #26190f 100%)",
+    railEdge: "#8f6544",
     rowShadow: "0 10px 22px rgba(24, 8, 40, 0.4)",
-    labelClass: "text-violet-300/85",
+    labelClass: "text-white",
   },
   blog: {
-    railBg: "linear-gradient(180deg, #0e1a12 0%, #080f0c 100%)",
-    railEdge: "#2d5c3e",
+    railBg: "linear-gradient(180deg, #664328 0%, #432a19 48%, #291a10 100%)",
+    railEdge: "#9a6f48",
     rowShadow: "0 10px 22px rgba(8, 32, 20, 0.42)",
-    labelClass: "text-emerald-400/80",
+    labelClass: "text-white",
   },
   vid: {
-    railBg: "linear-gradient(180deg, #24180c 0%, #120a06 100%)",
-    railEdge: "#7a5230",
+    railBg: "linear-gradient(180deg, #70472a 0%, #4a2e1b 48%, #2d1b10 100%)",
+    railEdge: "#a7774d",
     rowShadow: "0 10px 24px rgba(40, 20, 6, 0.45)",
-    labelClass: "text-orange-300/85",
+    labelClass: "text-white",
   },
 };
 
@@ -96,15 +96,21 @@ export function getSpineFaceStyle(
   itemType?: ShelfInteractiveItemType,
 ): CSSProperties {
   let base = variedSpineBase(baseColor, index, sectionId);
+  const vibrance = 0.16 + (index % 4) * 0.035;
+  if (itemType === "book") {
+    base = mixHex(base, "#5da8ff", vibrance);
+    base = mixHex(base, "#7d4dff", 0.05);
+  }
   if (itemType === "paper") {
-    base = mixHex(base, "#8a9aad", 0.1);
-    base = mixHex(base, "#1a2030", 0.05);
+    base = mixHex(base, "#f4f1ea", 0.7);
+    base = mixHex(base, "#eee7db", 0.18);
   }
   if (itemType === "blog") {
-    base = mixHex(base, "#1e5c38", 0.06);
+    base = mixHex(base, "#37cc7e", 0.18);
   }
   if (itemType === "video") {
-    base = mixHex(base, "#8b4513", 0.08);
+    base = mixHex(base, "#ff2b2b", 0.45);
+    base = mixHex(base, "#050505", 0.25);
   }
 
   const leftLit = mixHex(base, "#f0f4fc", 0.14 + (index % 5) * 0.015);

@@ -1,4 +1,4 @@
-export type ProjectLanguage = "rust" | "go" | "typescript";
+type ProjectLanguage = "rust" | "go" | "typescript";
 
 export type Project = {
   slug: string;

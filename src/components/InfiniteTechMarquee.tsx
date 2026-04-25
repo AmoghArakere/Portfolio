@@ -2,7 +2,7 @@
  * Compact pill marquee (infinite scroll) — inspired by Aceternity “Infinite Moving Cards”
  * @see https://ui.aceternity.com/components/infinite-moving-cards
  */
-export type TechMarqueeItem = {
+type TechMarqueeItem = {
   /** simple-icons slug for https://cdn.simpleicons.org/{slug}/{color} (ignored when localIcon is set) */
   iconSlug: string;
   /** brand hex without # */

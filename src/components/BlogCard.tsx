@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type Props = {
   slug: string;
@@ -9,11 +10,28 @@ type Props = {
   tags?: string[];
   cover?: string;
   compact?: boolean;
+  className?: string;
 };
 
-export default function BlogCard({ slug, title, excerpt, date, readTime, tags = [], cover, compact = false }: Props) {
+export default function BlogCard({
+  slug,
+  title,
+  excerpt,
+  date,
+  readTime,
+  tags = [],
+  cover,
+  compact = false,
+  className,
+}: Props) {
   return (
-    <Link href={`/blog/${slug}`} className="block border border-[var(--border)] p-4 hover:bg-[var(--surface)] transition-colors">
+    <Link
+      href={`/blog/${slug}`}
+      className={cn(
+        "block border border-[var(--border)] p-4 transition-colors hover:bg-[var(--surface)]",
+        className,
+      )}
+    >
       {cover ? (
         <div className={`w-full mb-3 border border-[var(--border)] bg-[var(--surface)] ${compact ? "h-28" : "h-52"}`} />
       ) : null}

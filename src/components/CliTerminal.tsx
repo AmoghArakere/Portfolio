@@ -7,7 +7,7 @@ import { cliUrbanDisplay } from "@/lib/cliUrbanFont";
 import { projects as projectsData } from "@/data/projects";
 import { experience } from "@/data/work";
 
-export type CliPost = {
+type CliPost = {
   slug: string;
   title: string;
   date: string;
@@ -69,10 +69,10 @@ function NrupaMark() {
     <div className="relative select-none" aria-hidden>
       <div className="relative">
         <p
-          className={`${cliUrbanDisplay.className} text-[clamp(2.85rem,13vw,5.25rem)] leading-[0.95] tracking-tight text-white`}
+          className={`${cliUrbanDisplay.className} text-[clamp(2.85rem,13vw,5.25rem)] leading-[0.95] tracking-tight text-indigo-300`}
           style={{
             textShadow:
-              "0 2px 0 rgb(0 0 0 / 0.85), 0 0 24px rgb(255 255 255 / 0.15), 3px 0 0 rgb(99 102 241 / 0.35), -3px 0 0 rgb(56 189 248 / 0.2)",
+              "0 1px 0 rgb(0 0 0 / 0.55), 0 0 28px rgb(165 180 252 / 0.35), 0 0 48px rgb(129 140 248 / 0.2)",
           }}
         >
           NRUPA
@@ -88,7 +88,7 @@ function NrupaMark() {
 function PromptLine({ cmd }: { cmd: string }) {
   return (
     <p className="font-mono text-[13px] leading-relaxed">
-      <span className="text-indigo-400">nrupa@terminal</span>
+      <span className="text-indigo-300">nrupa@terminal</span>
       <span className="text-zinc-100">:~$ </span>
       <span className="text-white">{cmd}</span>
     </p>
@@ -136,7 +136,7 @@ function Pill({
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-1.5 rounded-full border border-indigo-800/70 bg-indigo-950/50 px-2.5 py-1 font-mono text-[11px] text-zinc-200 transition hover:border-indigo-600/80 hover:bg-indigo-950/90 hover:text-indigo-100"
+      className="inline-flex items-center gap-1.5 rounded-full border border-indigo-300/50 bg-indigo-950/50 px-2.5 py-1 font-mono text-[11px] text-zinc-200 transition hover:border-indigo-300/70 hover:bg-indigo-950/90 hover:text-indigo-100"
     >
       <span className="text-zinc-400 [&>svg]:size-3.5">{icon}</span>
       {children}
@@ -380,7 +380,7 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
         pushOutput([
           "Email: amogh.nagaraj03@gmail.com",
           "GitHub / Twitter / LinkedIn: run github, twitter, linkedin",
-          "Pages: /contact · /newsletter",
+          "Pages: /contact",
         ]);
         return;
       }
@@ -404,7 +404,7 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
       if (cmd0 === "open") {
         const target = args.join(" ").trim();
         if (!target) {
-          pushOutput(["Usage: open <path or https://…>", "Examples: open /work   open https://github.com"]);
+          pushOutput(["Usage: open <path or https://…>", "Examples: open /about   open https://github.com"]);
           return;
         }
         if (/^https?:\/\//i.test(target)) {
@@ -489,7 +489,7 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
 
           <div className="shrink-0 border-t border-zinc-800/90 bg-black px-4 py-3 sm:px-5">
             <label className="flex items-center gap-1 font-mono text-[13px]">
-              <span className="shrink-0 text-indigo-400">nrupa@terminal</span>
+              <span className="shrink-0 text-indigo-300">nrupa@terminal</span>
               <span className="shrink-0 text-zinc-100">:~$</span>
               <input
                 ref={inputRef}

@@ -1,4 +1,4 @@
-export type Role = {
+type Role = {
   title: string;
   company: string;
   location: string;
@@ -7,7 +7,7 @@ export type Role = {
   bullets: string[];
 };
 
-export type FeaturedWork = {
+type FeaturedWork = {
   title: string;
   period: string;
   subtitle: string;
@@ -18,17 +18,29 @@ export type FeaturedWork = {
 
 export const experience: Role[] = [
   {
-    title: "Associate Software Engineer",
+    title: "Software Engineer",
     company: "Polaris Inc.",
     location: "Bengaluru",
-    period: "July 2025 - Present",
-    tags: ["Go", "Microsoft Azure", "NUnit", "Postman", "Git"],
+    period: "Jul 2025 - Present",
+    tags: [".Net Core", "C#", "Azure", "Postman", "Git"],
     bullets: [
-      "Building backend for a multi-tenant SaaS platform with secure service boundaries.",
-      "Designed JWT auth with RBAC and tenant-aware isolation.",
-      "Shipped high-throughput APIs in Go and Echo with PostgreSQL.",
-      "Integrated OpenTelemetry traces and metrics across critical services.",
-      "Built migration-safe data workflows and internal admin tooling.",
+      "Built and maintained backend APIs for internal and client-facing workflows.",
+      "Worked on auth flows, role checks, and safe tenant data boundaries.",
+      "Improved endpoint performance with query/index tuning and payload cleanups.",
+      "Added observability with traces and metrics for faster issue debugging.",
+    ],
+  },
+  {
+    title: "Freelance Developer",
+    company: "Freelance",
+    location: "Bengaluru",
+    period: "Sep 2024 - Dec 2024",
+    tags: ["Python", "React", "Crew AI", "FastAPI", "Pinecone"],
+    bullets: [
+      "Delivered custom full-stack features for small business and portfolio products.",
+      "Implemented API + database changes with migration-safe rollout steps.",
+      "Set up deployment pipelines and production bug-fix cycles for clients.",
+      "Collaborated on scope, timeline, and iterative delivery with weekly milestones.",
     ],
   },
 ];

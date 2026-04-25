@@ -7,7 +7,6 @@ import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
@@ -34,32 +33,12 @@ function SunIcon() {
   );
 }
 
-function MoonIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <path
-        d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const pathname = usePathname();
   const trackRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    if (typeof window !== "undefined" && window.localStorage.getItem("theme") === "light") {
-      return "light";
-    }
-    return "dark";
-  });
 
   const activeIndex = useMemo(
     () => navLinks.findIndex((link) => linkIsActive(link.href, pathname)),
@@ -67,7 +46,6 @@ export default function Navbar() {
   );
 
   const targetIndex = hovered ?? (activeIndex >= 0 ? activeIndex : -1);
-
   const applyPill = useCallback(() => {
     const pill = pillRef.current;
     const container = trackRef.current;
@@ -114,17 +92,9 @@ export default function Navbar() {
   const linkBase =
     "relative z-10 shrink-0 rounded-full px-3 py-1.5 font-mono text-sm no-underline outline-none transition-colors duration-300 ease-out";
 
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    root.classList.toggle("light", nextTheme === "light");
-    window.localStorage.setItem("theme", nextTheme);
-    setTheme(nextTheme);
-  };
-
   return (
-    <nav className="navbar-pill mx-auto max-w-[720px] px-6 py-4">
-      <div className="flex items-center gap-2.5 rounded-full border border-[var(--nav-border)] bg-[var(--nav-bg)] px-3 py-2 shadow-sm transition-colors duration-300">
+    <nav className="navbar-pill sticky top-0 z-50 mx-auto max-w-[760px] px-6 py-4">
+      <div className="flex w-full items-center gap-2.5 rounded-full border border-[var(--nav-border)] bg-[var(--nav-bg)] px-3 py-2 shadow-sm transition-colors duration-300">
         <div className="shrink-0 rounded-full bg-[var(--nav-time-bg)] px-3 py-1.5 transition-colors duration-300">
           <LiveClock className="font-mono text-xs text-[var(--nav-muted)]" />
         </div>
@@ -144,35 +114,35 @@ export default function Navbar() {
             const isOn =
               hovered === i || (hovered === null && i === activeIndex && activeIndex >= 0);
             return (
-              <Link
-                key={link.href}
-                ref={(el) => {
-                  itemRefs.current[i] = el;
-                }}
-                href={link.href}
-                onMouseEnter={() => setHovered(i)}
-                className={
-                  isOn
-                    ? `${linkBase} font-semibold text-[var(--nav-active-text)] no-underline`
-                    : `${linkBase} text-[var(--nav-muted)] hover:text-[var(--nav-muted-hover)] no-underline`
-                }
-              >
-                {link.label}
-              </Link>
+              <div key={link.href} className="relative flex items-center">
+                <Link
+                  ref={(el) => {
+                    itemRefs.current[i] = el;
+                  }}
+                  href={link.href}
+                  onMouseEnter={() => setHovered(i)}
+                  className={
+                    isOn
+                      ? `${linkBase} font-semibold text-[var(--nav-active-text)] no-underline`
+                      : `${linkBase} text-[var(--nav-muted)] hover:text-[var(--nav-muted-hover)] no-underline`
+                  }
+                >
+                  {link.label}
+                </Link>
+              </div>
             );
           })}
         </div>
 
         <div className="h-5 w-px shrink-0 bg-[var(--nav-divider)] transition-colors duration-300" aria-hidden />
 
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className="flex shrink-0 items-center justify-center rounded-full p-1.5 text-[var(--nav-muted)] transition-colors duration-300 ease-out hover:bg-[var(--nav-time-bg)] hover:text-[var(--nav-muted-hover)]"
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+        <span
+          className="flex shrink-0 items-center justify-center rounded-full p-1.5 text-[var(--nav-muted)]"
+          aria-label="Theme icon"
+          role="img"
         >
-          {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-        </button>
+          <SunIcon />
+        </span>
       </div>
     </nav>
   );

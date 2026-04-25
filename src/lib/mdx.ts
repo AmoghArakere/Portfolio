@@ -5,7 +5,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 
 const BLOG_DIR = path.join(process.cwd(), "src", "content", "blog");
 
-export type PostMeta = {
+type PostMeta = {
   title: string;
   date: string;
   readTime: string;

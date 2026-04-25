@@ -10,25 +10,33 @@ type SpotifyNowPlayingProps = {
   durationMs?: number;
 };
 
+const TICK_MS = 250;
+
 function toClock(ms?: number) {
-  if (!ms || ms < 0) return "--:--";
+  if (ms === undefined || ms === null || ms < 0) return "--:--";
   const totalSec = Math.floor(ms / 1000);
   const min = Math.floor(totalSec / 60);
   const sec = `${totalSec % 60}`.padStart(2, "0");
   return `${min}:${sec}`;
 }
 
-export default function SpotifyNowPlaying({ isPlaying, title, artist, progressMs = 0, durationMs }: SpotifyNowPlayingProps) {
+export default function SpotifyNowPlaying({
+  isPlaying,
+  title,
+  artist,
+  progressMs = 0,
+  durationMs,
+}: SpotifyNowPlayingProps) {
   const [elapsedMs, setElapsedMs] = useState(progressMs);
 
   useEffect(() => {
     if (!isPlaying || !durationMs) return;
 
-    const interval = window.setInterval(() => {
-      setElapsedMs((prev) => Math.min(prev + 1000, durationMs));
-    }, 1000);
+    const id = window.setInterval(() => {
+      setElapsedMs((prev) => Math.min(prev + TICK_MS, durationMs));
+    }, TICK_MS);
 
-    return () => window.clearInterval(interval);
+    return () => window.clearInterval(id);
   }, [isPlaying, durationMs]);
 
   const elapsedLabel = toClock(elapsedMs);
@@ -53,13 +61,13 @@ export default function SpotifyNowPlaying({ isPlaying, title, artist, progressMs
           <div className="flex min-w-0 flex-1 items-center gap-2 text-xs font-mono text-[var(--muted)] transition-colors duration-200 group-hover:text-[var(--muted-hover)]">
             <span className="shrink-0 tabular-nums">{elapsedLabel}</span>
             <div
-              className="relative h-[3px] min-w-[48px] flex-1 rounded-full bg-[var(--border)]"
+              className="relative h-[3px] min-w-[48px] flex-1 overflow-hidden rounded-full bg-white/15"
               aria-hidden
               title={`${elapsedLabel} — ${totalLabel}`}
             >
               {durationMs ? (
                 <span
-                  className="absolute left-0 top-0 h-full rounded-full bg-[var(--accent)] transition-[width] duration-1000 ease-linear"
+                  className="absolute left-0 top-0 h-full rounded-full bg-[#1ed760] transition-[width] duration-150 ease-linear"
                   style={{ width: `${progressPct}%` }}
                 />
               ) : null}

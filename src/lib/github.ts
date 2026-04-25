@@ -1,11 +1,11 @@
-export type ContributionDay = {
+type ContributionDay = {
   date: string;
   contributionCount: number;
   color: string;
   weekday: number;
 };
 
-export type ContributionData = {
+type ContributionData = {
   totalContributions: number;
   months: string[];
   weeks: ContributionDay[][];

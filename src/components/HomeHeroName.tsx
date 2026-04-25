@@ -12,7 +12,7 @@ const EncryptedNameHeading = dynamic(() => import("@/components/EncryptedNameHea
 });
 
 const TITLE =
-  "home-name-title inline-block w-fit max-w-full text-5xl font-normal leading-tight tracking-wide sm:text-6xl";
+  "home-name-title inline-block w-fit max-w-full text-5xl font-normal leading-tight tracking-wide text-white sm:text-6xl";
 
 export default function HomeHeroName({ fontClassName }: { fontClassName: string }) {
   return (

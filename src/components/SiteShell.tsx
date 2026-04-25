@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import StarsAmbientBackground from "@/components/StarsAmbientBackground";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,28 +12,15 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isContact = pathname === "/contact";
   const isShelf = pathname.startsWith("/shelf");
   const isCli = pathname.startsWith("/cli");
-  useEffect(() => {
-    // #region agent log
-    fetch("http://127.0.0.1:7854/ingest/5b8534c4-f00f-4dd8-8795-4eff75f9aeb9", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "52138e" },
-      body: JSON.stringify({
-        sessionId: "52138e",
-        runId: "pre-fix",
-        hypothesisId: "H3",
-        location: "SiteShell.tsx:11",
-        message: "route mounted in shell",
-        data: { pathname, isBlog },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-  }, [pathname, isBlog]);
+  const isAbout = pathname.startsWith("/about");
+  const isProjects = pathname.startsWith("/projects");
+  const isHome = pathname === "/";
 
   if (isBlog) {
     return (
       <>
-        {children}
+        <StarsAmbientBackground />
+        <div className="relative z-10 bg-transparent">{children}</div>
         <ChatWidget />
       </>
     );
@@ -42,10 +29,23 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
+      <StarsAmbientBackground />
       <main
         className={`${
-          isContact ? "max-w-[1100px]" : isShelf ? "max-w-none" : isCli ? "max-w-[960px]" : "max-w-[680px]"
-        } mx-auto w-full px-6 py-12 animate-fade-in`}
+          isContact
+            ? "max-w-[1100px]"
+            : isShelf
+              ? "max-w-none"
+              : isAbout
+                ? "max-w-[1150px]"
+                : isProjects
+                  ? "max-w-[1150px]"
+                  : isHome
+                    ? "max-w-[760px]"
+                : isCli
+                  ? "max-w-[960px]"
+                  : "max-w-[680px]"
+        } relative z-10 mx-auto w-full bg-transparent px-6 ${isShelf ? "py-6" : "py-12"} animate-fade-in`}
       >
         {children}
       </main>
