@@ -137,13 +137,13 @@ export default async function HiPage() {
             <div key={`${role.company}-${role.role ?? role.roles?.[0]?.title ?? "role"}`}>
               {idx > 0 && <hr className="border-t border-indigo-400/50" />}
               <HiExperienceCard
-              company={role.company}
-              role={role.role}
-              period={role.period}
-              location={role.location}
-              roles={role.roles}
-              bullets={role.bullets}
-            />
+                company={role.company}
+                role={role.role}
+                period={role.period}
+                location={role.location}
+                roles={role.roles}
+                bullets={role.bullets}
+              />
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ export default async function HiPage() {
         <div className="flex items-center gap-2">
           <span className="h-8 w-1 rounded-full bg-indigo-400/90" aria-hidden />
           <h2 className="text-xl font-semibold">Projects</h2>
-     
+
         </div>
         <FocusProjectCards projects={topProjects} />
         <div className="flex justify-center pt-1">

@@ -124,9 +124,8 @@ export default function HiProfileHeader() {
             </h1>
             <p className="mt-1 h-5 text-xs text-[var(--muted)]/85 sm:text-sm">
               <span
-                className={`inline-block transition-all duration-200 ease-out ${
-                  isVisible ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
-                }`}
+                className={`inline-block transition-all duration-200 ease-out ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
+                  }`}
               >
                 {HI_FLIP_WORDS[flipIndex]}
               </span>
