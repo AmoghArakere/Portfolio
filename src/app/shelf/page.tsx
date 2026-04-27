@@ -14,7 +14,7 @@ export default function ShelfPage() {
       <section>
         <PageHeaderLabel label="shelf" />
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--muted)]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Books, papers, blogs, and videos worth your time.
         </p>
       </section>
       <ShelfInteractive />

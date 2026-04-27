@@ -87,9 +87,9 @@ export default function ContactPage() {
               className="rounded-2xl border border-indigo-400/15 bg-black/30 p-4 backdrop-blur-sm"
             >
               <p className="italic text-[var(--muted)]">
-                &ldquo;If you want something&rdquo;
+                &ldquo;Believe you can and you are halfway there.&rdquo;
               </p>
-              <p className="mt-2 text-right text-[var(--muted)]">— Thomas Jefferson</p>
+              <p className="mt-2 text-right text-[var(--muted)]">— Theodore Roosevelt</p>
             </CardSpotlight>
           </div>
         </CardSpotlight>
