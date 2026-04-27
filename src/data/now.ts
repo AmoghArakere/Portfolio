@@ -1,19 +1,19 @@
 export const nowData = {
   building: {
-    title: "Cineyma",
-    href: "/projects/cineyma",
-    description: "A fault-tolerant actor runtime with supervision trees and typed messages.",
+    title: "Muxera",
+    href: "/projects",
+    description: "A unified LLM gateway for multi-model access via a single API.",
     tags: ["Rust", "Tokio"],
     progress: 85,
   },
   reading: [
+    "Thinking in Systems - Donella H. Meadows",
     "Database Internals - Alex Petrov",
-    "Locks, Latches, and Storage Engine Concurrency - Various",
-    "Rust for Rustaceans - Jon Gjengset",
+    "Understanding Distributed Systems - Roberto Vitillo",
   ],
   thoughts: [
-    "DAG-based telemetry might be the right model for spans and retries.",
-    "Storage engines are underappreciated craftsmanship.",
-    "Finish the lock manager prototype before adding metrics polish.",
+    "KV cache management is the unsung hero of inference optimization.",
+    "Fix your chunking strategy before blaming the retrieval latency.",
+    "Build the manual override before giving the agent access to the production API.",
   ],
 };

@@ -122,7 +122,8 @@ export default async function Home() {
           </div>
         </div>
         <div className="mt-6 grid md:grid-cols-3 gap-3">
-          <div className="rounded-xl border border-white/8 bg-gradient-to-br from-[#5d5524]/26 via-[#2b2a18]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b6128]/32 hover:via-[#2b2a18]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#5d5524]/26 via-[#2b2a18]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b6128]/32 hover:via-[#2b2a18]/22 hover:to-transparent hover:animate-home-card-wobble">
+            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-xs text-[var(--muted)] mb-1">Building</p>
             <Link href={nowData.building.href} className="font-semibold text-lg">
               {nowData.building.title}
@@ -135,15 +136,22 @@ export default async function Home() {
             </div>
             <ProgressBar value={nowData.building.progress} />
           </div>
-          <div className="rounded-xl border border-white/8 bg-gradient-to-br from-[#1d4a5f]/24 via-[#132733]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#245a73]/30 hover:via-[#132733]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#1d4a5f]/24 via-[#132733]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#245a73]/30 hover:via-[#132733]/22 hover:to-transparent hover:animate-home-card-wobble">
+            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-sm text-[var(--muted)] mb-2">Reading</p>
             <ul className="space-y-1">
               {nowData.reading.map((item) => (
-                <li key={item}>• {item}</li>
+                <li key={item} className="flex items-start gap-2">
+                  <span aria-hidden className="mt-[2px] shrink-0 text-[var(--muted)]">
+                    •
+                  </span>
+                  <span className="min-w-0">{item}</span>
+                </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-white/8 bg-gradient-to-br from-[#5a2e49]/24 via-[#2a1b29]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b3757]/30 hover:via-[#2a1b29]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#5a2e49]/24 via-[#2a1b29]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b3757]/30 hover:via-[#2a1b29]/22 hover:to-transparent hover:animate-home-card-wobble">
+            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-sm text-[var(--muted)] mb-2">{"// thoughts"}</p>
             <div className="space-y-1 text-[var(--muted)]">
               {nowData.thoughts.map((thought) => (

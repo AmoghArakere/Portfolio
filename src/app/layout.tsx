@@ -18,6 +18,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Amogh Nagaraj | Nrupa - Backend Engineer",
   description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: "Amogh Nagaraj | Nrupa",
     description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",

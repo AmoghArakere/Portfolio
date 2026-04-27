@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description: "Get in touch for collaborations and opportunities.",
 };
 
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "https://formspree.io/f/your-form-id";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export default function ContactPage() {
   return (
     <div className="space-y-8">
@@ -17,19 +21,44 @@ export default function ContactPage() {
           <h2 className="mb-4 text-lg font-semibold tracking-normal text-[var(--text)]">
             Send a Message
           </h2>
-          <form className="space-y-4">
+          <form
+            action={FORMSPREE_ENDPOINT}
+            method="POST"
+            className="space-y-4"
+          >
             <div>
-              <label className="mb-1.5 block text-sm font-semibold">Your Name</label>
-              <input className="w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25" placeholder="John Doe" />
+              <label htmlFor="name" className="mb-1.5 block text-sm font-semibold">Your Name</label>
+              <input
+                id="name"
+                name="name"
+                required
+                className="w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25"
+                placeholder="John Doe"
+              />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-semibold">Email Address</label>
-              <input className="w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25" placeholder="john@example.com" />
+              <label htmlFor="email" className="mb-1.5 block text-sm font-semibold">Email Address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25"
+                placeholder="john@example.com"
+              />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-semibold">Your Message</label>
-              <textarea className="min-h-28 w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25" placeholder="Tell me about your project or just say hello!" />
+              <label htmlFor="message" className="mb-1.5 block text-sm font-semibold">Your Message</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                className="min-h-28 w-full rounded-xl border border-[var(--contact-panel-border)] bg-[var(--surface)]/40 px-3 py-2 outline-none transition placeholder:text-[var(--input-placeholder)] focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/25"
+                placeholder="Tell me about your project or just say hello!"
+              />
             </div>
+            <input type="hidden" name="_subject" value="New message from portfolio contact form" />
+            <input type="hidden" name="_next" value={`${SITE_URL}/contact?sent=1`} />
             <button
               type="submit"
               className="w-full rounded-xl border border-indigo-300/40 bg-indigo-300 px-3 py-1.5 font-semibold text-indigo-950 transition hover:border-indigo-200/80 hover:bg-indigo-200"
@@ -46,7 +75,7 @@ export default function ContactPage() {
         >
           <h2 className="mb-2 text-lg font-semibold tracking-normal text-[var(--text)]">Connect</h2>
           <p className="text-[var(--muted)]">I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-          <p className="text-[var(--muted)]">Based in India, but working with clients worldwide.</p>
+          <p className="mt-2 text-[var(--muted)]">Based in India, but working with clients worldwide.</p>
 
           <div className="mt-4 space-y-1">
             <p className="text-sm font-semibold">Email</p>
@@ -58,13 +87,13 @@ export default function ContactPage() {
           <div className="mt-6 space-y-1">
             <p className="text-sm font-semibold">Follow Me</p>
             <div className="flex flex-wrap items-center gap-4">
-              <a href="https://github.com/AmoghArakere" rel="noreferrer" className="!no-underline hover:!no-underline hover:!text-indigo-300">
+              <a href="https://github.com/AmoghArakere" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
                 GitHub
               </a>
-              <a href="https://twitter.com/nrupatungaa" rel="noreferrer" className="!no-underline hover:!no-underline hover:!text-indigo-300">
+              <a href="https://twitter.com/nrupatungaa" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
                 Twitter
               </a>
-              <a href="https://linkedin.com/in/amogh07/" rel="noreferrer" className="!no-underline hover:!no-underline hover:!text-indigo-300">
+              <a href="https://linkedin.com/in/amogh07/" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
                 LinkedIn
               </a>
             </div>
