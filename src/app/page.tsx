@@ -67,11 +67,40 @@ export default async function Home() {
             <div className="flex gap-4">
               <span className="w-px self-stretch rounded-full bg-zinc-500/70" aria-hidden />
               <div className="space-y-4">
-                <p>I spend most of my time in Go and Rust, building backends that do not fall over and systems that solve when they need to.</p>
-                <p>I am down to databases, distributed systems, and the kind of problems where you have to think about what happens when things go wrong.</p>
                 <p>
-                  When I figure something out, I write about it. When an idea works, I ship it. You can read on <Link href="/blog">blog</Link>, browse builds on{" "}
-                  <Link href="/projects">projects</Link>, and follow the work timeline in <Link href="/about">about</Link>.
+                  I spend most of my time in the{" "}
+                  <strong className="text-indigo-300 font-semibold">.NET ecosystem</strong>,{" "}
+                  <strong className="text-indigo-300 font-semibold">Go</strong>, and{" "}
+                  <strong className="text-indigo-300 font-semibold">Azure</strong>, building backends that hold up
+                  under pressure. I work on databases and distributed systems, where failure is expected and
+                  tradeoffs are part of the job.
+                </p>
+                <p>
+                  My forte lies in{" "}
+                  <strong className="text-indigo-300 font-semibold">Backend engineering</strong>, designing systems
+                  that scale, fail gracefully, and keep working in production. I focus on building things that
+                  last, not just things that run.
+                </p>
+                <p>
+                I am currently exploring <strong className="text-indigo-300 font-semibold">Agentic AI</strong> and experimenting with different AI tools to stay close to where the field is heading. Writing lives on{" "}
+                <Link href="/blog" className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200">
+                  blog
+                </Link>
+                . Builds live on{" "}
+                <Link
+                  href="/projects"
+                  className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200"
+                >
+                  projects
+                </Link>
+                . The full story is on{" "}
+                <Link
+                  href="/about"
+                  className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200"
+                >
+                  about
+                </Link>
+                .
                 </p>
               </div>
             </div>
