@@ -82,25 +82,8 @@ export default async function Home() {
                   last, not just things that run.
                 </p>
                 <p>
-                I am currently exploring <strong className="text-indigo-300 font-semibold">Agentic AI</strong> and experimenting with different AI tools to stay close to where the field is heading. Writing lives on{" "}
-                <Link href="/blog" className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200">
-                  blog
-                </Link>
-                . Builds live on{" "}
-                <Link
-                  href="/projects"
-                  className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200"
-                >
-                  projects
-                </Link>
-                . The full story is on{" "}
-                <Link
-                  href="/about"
-                  className="text-indigo-300 font-semibold !no-underline hover:!no-underline hover:text-indigo-200"
-                >
-                  about
-                </Link>
-                .
+                  I am currently exploring <strong className="text-indigo-300 font-semibold">Agentic AI</strong> and
+                  experimenting with different AI tools to stay close to where the field is heading.
                 </p>
               </div>
             </div>

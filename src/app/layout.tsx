@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import DebugLayoutProbe from "@/components/DebugLayoutProbe";
 import SiteShell from "@/components/SiteShell";
 import ThemeBootstrap from "@/components/ThemeBootstrap";
 
@@ -52,7 +51,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ThemeBootstrap />
         <SiteShell>{children}</SiteShell>
-        <DebugLayoutProbe />
       </body>
     </html>
   );

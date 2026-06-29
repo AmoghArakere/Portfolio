@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/mdx";
 import { projects } from "@/data/projects";
 import { experience, featuredProjects } from "@/data/work";
 import { shelfInteractiveSections } from "@/data/shelfInteractive";
+import { nowData } from "@/data/now";
 import type { ChatContextChunk, ChatSource, RankedChunk } from "@/lib/chatTypes";
 
 const ABOUT_SUMMARY = [
@@ -113,12 +114,18 @@ function rankChunk(query: string, chunk: ChatContextChunk): RankedChunk {
 
   const isStackIntent = queryTokens.some((t) => ["stack", "tech", "technology", "tools"].includes(t));
   const isProjectIntent = queryTokens.some((t) => ["project", "projects", "build", "built", "github"].includes(t));
-  const isContactIntent = queryTokens.some((t) => ["contact", "reach", "mail", "email"].includes(t));
+  const isContactIntent = queryTokens.some((t) =>
+    ["contact", "reach", "mail", "email", "hire", "linkedin", "twitter", "social", "socials", "connect"].includes(t),
+  );
+  const isNowIntent = queryTokens.some((t) =>
+    ["now", "currently", "building", "reading", "thoughts", "working"].includes(t),
+  );
 
   let sectionBoost = 0;
   if (isStackIntent && (chunk.section === "about" || chunk.section === "experience")) sectionBoost += 0.2;
   if (isProjectIntent && chunk.section === "projects") sectionBoost += 0.2;
-  if (isContactIntent && chunk.section === "about") sectionBoost += 0.1;
+  if (isContactIntent && chunk.section === "contact") sectionBoost += 0.25;
+  if (isNowIntent && chunk.section === "now") sectionBoost += 0.25;
   if (chunk.section.startsWith("shelf-") && (isStackIntent || isProjectIntent)) sectionBoost -= 0.1;
 
   const score = overlap * 0.5 + fuzzy * 0.35 + keywordBoost * 0.15 + sectionBoost;
@@ -150,6 +157,61 @@ async function buildChunks(): Promise<ChatContextChunk[]> {
       url: "/about",
       keywords: fact.keywords,
     });
+  });
+
+  chunks.push({
+    id: "contact-info",
+    section: "contact",
+    title: "Contact and socials",
+    text:
+      "You can reach me by email at amogh.nagaraj03@gmail.com. I'm on GitHub, Twitter/X, and LinkedIn, " +
+      "and you can schedule a quick call from the contact page. I'm based in Bengaluru, India and open to " +
+      "collaborations, freelance work, and new opportunities.",
+    url: "/contact",
+    keywords: [
+      "contact",
+      "email",
+      "mail",
+      "reach",
+      "hire",
+      "freelance",
+      "github",
+      "twitter",
+      "linkedin",
+      "social",
+      "socials",
+      "connect",
+      "collaborate",
+      "call",
+      "meeting",
+    ],
+  });
+
+  chunks.push({
+    id: "now-building",
+    section: "now",
+    title: "What I am building now",
+    text: `Right now I am building ${nowData.building.title}: ${nowData.building.description} Stack: ${nowData.building.tags.join(", ")}.`,
+    url: "/",
+    keywords: ["now", "building", "current", "currently", "working on", "latest", nowData.building.title.toLowerCase(), ...nowData.building.tags.map((t) => t.toLowerCase())],
+  });
+
+  chunks.push({
+    id: "now-reading",
+    section: "now",
+    title: "What I am reading now",
+    text: `Currently reading: ${nowData.reading.join("; ")}.`,
+    url: "/",
+    keywords: ["now", "reading", "books", "currently reading", "book"],
+  });
+
+  chunks.push({
+    id: "now-thoughts",
+    section: "now",
+    title: "What is on my mind",
+    text: `Some things on my mind lately: ${nowData.thoughts.join(" ")}`,
+    url: "/",
+    keywords: ["now", "thoughts", "thinking", "ideas", "mind"],
   });
 
   projects.forEach((project) => {
