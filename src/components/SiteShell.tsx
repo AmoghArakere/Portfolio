@@ -15,7 +15,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isAbout = pathname.startsWith("/about");
   const isProjects = pathname.startsWith("/projects");
   const isHome = pathname === "/";
-
   if (isBlog) {
     return (
       <>
@@ -45,7 +44,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 : isCli
                   ? "max-w-[960px]"
                   : "max-w-[680px]"
-        } relative z-10 mx-auto w-full bg-transparent px-6 ${isShelf ? "py-6" : "py-12"} animate-fade-in`}
+        } relative z-10 mx-auto w-full bg-transparent overflow-visible px-6 ${isShelf ? "py-6" : "py-12"} animate-fade-in`}
       >
         {children}
       </main>

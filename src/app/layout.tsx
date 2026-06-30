@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/SiteShell";
-import ThemeBootstrap from "@/components/ThemeBootstrap";
+
+const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light");}else{document.documentElement.classList.remove("light");}}catch(e){}})();`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Amogh Nagaraj | Nrupa - Backend Engineer",
+  title: "Amogh Nagaraj",
   description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
   icons: {
     icon: [
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
-    title: "Amogh Nagaraj | Nrupa",
+    title: "Amogh Nagaraj",
     description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
     url: "https://www.nrupa.tech",
     siteName: "nrupa",
@@ -49,7 +50,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeBootstrap />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

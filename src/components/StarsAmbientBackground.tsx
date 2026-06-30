@@ -10,7 +10,7 @@ import { StarsBackground } from "@/components/ui/stars-background";
 export default function StarsAmbientBackground() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 h-svh min-h-dvh w-full overflow-hidden"
+      className="stars-ambient pointer-events-none fixed inset-0 z-0 h-svh min-h-dvh w-full overflow-hidden"
       aria-hidden
     >
       <StarsBackground starDensity={0.00014} className="absolute inset-0" />

@@ -8,7 +8,7 @@ const MIN_TYPING_DELAY_MS = 1000;
 
 const quickPrompts = [
   "What projects have you built?",
-  "What’s your tech stack?",
+  "What's your tech stack?",
   "Tell me about your experience",
   "Where did you study?",
   "What are you currently reading?",
@@ -92,7 +92,12 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 h-[520px] w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[#1a202b] bg-[#0f1116] shadow-[0_24px_70px_rgba(0,0,0,.6)]">
+    <div
+      className="fixed bottom-5 right-5 z-50 h-[520px] w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[#1a202b] bg-[#0f1116] shadow-[0_24px_70px_rgba(0,0,0,.6)]"
+      role="dialog"
+      aria-modal="true"
+      aria-label="nrupabot chat"
+    >
       <div className="flex items-center justify-between border-b border-[#111723] px-4 py-3">
         <div className="flex items-center gap-3">
           <img src={BOT_AVATAR} alt="nrupabot avatar" className="h-8 w-8 rounded-full object-cover object-[50%_18%]" />
@@ -104,7 +109,7 @@ export default function ChatWidget() {
             </p>
           </div>
         </div>
-        <button onClick={closeChat} className="text-2xl leading-none text-[var(--muted)]">
+        <button onClick={closeChat} className="text-2xl leading-none text-[var(--muted)]" aria-label="Close chat">
           ×
         </button>
       </div>
@@ -114,7 +119,7 @@ export default function ChatWidget() {
           <p className="mt-3 text-xs text-[var(--muted)]">Hi, I&apos;m nrupa</p>
           <p className="mt-2 text-sm font-medium leading-tight">what can I do for you?</p>
         </div>
-        <div ref={messagesRef} className="no-scrollbar max-h-[360px] space-y-2 overflow-y-auto px-1">
+        <div ref={messagesRef} className="chat-scrollbar max-h-[360px] space-y-2 overflow-y-auto px-1">
           {quickPrompts.map((prompt) => (
             <button
               key={prompt}

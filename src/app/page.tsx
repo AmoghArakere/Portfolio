@@ -16,7 +16,7 @@ import { getGithubContributions } from "@/lib/github";
 import { homeNameFont } from "@/lib/homeNameFont";
 
 export const metadata: Metadata = {
-  title: "Amogh Nagaraj | Nrupa - Backend Engineer",
+  title: "Amogh Nagaraj | Nrupa",
   description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
 };
 
@@ -55,14 +55,14 @@ export default async function Home() {
 
   return (
     <div className="space-y-16">
-      <section>
+      <section className="overflow-visible">
         <PageHeaderLabel label="home" />
         <HomeHeroName fontClassName={homeNameFont.className} />
         <div className="mt-1 flex items-center gap-3">
           <p className="text-zinc-500 italic">nrupa</p>
           <span className="h-px w-14 rounded-full bg-zinc-500/70" aria-hidden />
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-[1fr_240px] md:items-start">
+        <div className="mt-6 grid gap-6 overflow-visible md:grid-cols-[1fr_240px] md:items-start">
           <div>
             <div className="flex gap-4">
               <span className="w-px self-stretch rounded-full bg-zinc-500/70" aria-hidden />
@@ -91,7 +91,7 @@ export default async function Home() {
               <MovingBorderLink href="/hi">Everything at a glance</MovingBorderLink>
             </div>
           </div>
-          <div className="md:-mt-16">
+          <div className="overflow-visible md:-mt-16">
             <HomeWelcomeAvatar />
           </div>
         </div>
@@ -103,7 +103,7 @@ export default async function Home() {
         <div className={`group mt-6 overflow-hidden ${homeCard}`}>
           <div className="flex items-center justify-between gap-3 p-4">
             <div className="flex min-w-0 items-center gap-3">
-              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-black/20">
+              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-[var(--tag-bg)]">
                 {spotify?.albumImageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={spotify.albumImageUrl} alt={spotify.title} className="h-full w-full object-cover" />
@@ -134,7 +134,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="mt-6 grid md:grid-cols-3 gap-3">
-          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#5d5524]/26 via-[#2b2a18]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b6128]/32 hover:via-[#2b2a18]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="now-card now-card-amber relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
             <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-xs text-[var(--muted)] mb-1">Building</p>
             <Link href={nowData.building.href} className="font-semibold text-lg">
@@ -148,7 +148,7 @@ export default async function Home() {
             </div>
             <ProgressBar value={nowData.building.progress} />
           </div>
-          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#1d4a5f]/24 via-[#132733]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#245a73]/30 hover:via-[#132733]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="now-card now-card-teal relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
             <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-sm text-[var(--muted)] mb-2">Reading</p>
             <ul className="space-y-1">
@@ -162,7 +162,7 @@ export default async function Home() {
               ))}
             </ul>
           </div>
-          <div className="relative overflow-visible rounded-xl border border-white/8 bg-gradient-to-br from-[#5a2e49]/24 via-[#2a1b29]/16 to-transparent p-4 backdrop-blur-md transition duration-200 hover:from-[#6b3757]/30 hover:via-[#2a1b29]/22 hover:to-transparent hover:animate-home-card-wobble">
+          <div className="now-card now-card-mauve relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
             <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
             <p className="text-sm text-[var(--muted)] mb-2">{"// thoughts"}</p>
             <div className="space-y-1 text-[var(--muted)]">
@@ -210,7 +210,7 @@ export default async function Home() {
                         <div
                           key={day.date}
                           className="aspect-square w-full min-h-[2px] rounded-[3px]"
-                          style={{ backgroundColor: day.contributionCount === 0 ? "#1a1a1a" : day.color }}
+                          style={{ backgroundColor: day.contributionCount === 0 ? "var(--contrib-empty)" : day.color }}
                           title={`${day.date} · ${day.contributionCount} contributions`}
                         />
                       ))}
@@ -218,7 +218,7 @@ export default async function Home() {
                   ))}
                 </div>
               </div>
-              <div className="border-t border-white/5 px-4 py-3">
+              <div className="border-hairline border-t px-4 py-3">
                 <p className="text-xs text-[var(--muted)] transition-colors duration-200 group-hover:text-[var(--muted-hover)]">
                   {contributions.totalContributions} contributions in the last year
                 </p>

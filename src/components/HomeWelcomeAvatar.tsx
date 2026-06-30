@@ -47,7 +47,7 @@ export default function HomeWelcomeAvatar() {
   );
 
   return (
-    <div className="mx-auto w-fit md:mx-0">
+    <div className="mx-auto w-fit md:mx-0 md:-translate-x-12">
       <div className="relative h-[420px] w-[500px] overflow-visible rounded-xl">
         <Image
           src="/home/avatar/agent-overlay-huh-t.png"

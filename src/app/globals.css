@@ -64,6 +64,13 @@
   --contact-panel-border: rgba(255, 255, 255, 0.14);
   /* Form placeholders — lighter than body --muted */
   --input-placeholder: rgba(255, 255, 255, 0.32);
+  /* GitHub contribution graph empty cell */
+  --contrib-empty: #1a1a1a;
+  /* Indigo accent used for inline emphasis / links */
+  --accent-indigo: #a5b4fc;
+  /* Home contact row links (grey idle, bright on hover) */
+  --home-link: rgba(255, 255, 255, 0.7);
+  --home-link-hover: #ffffff;
 }
 
 html.light {
@@ -90,6 +97,18 @@ html.light {
   --nav-divider: #c8cbd4;
   --contact-panel-border: #d1d5db;
   --input-placeholder: #a8b0bd;
+  --contrib-empty: #e5e7eb;
+  --accent-indigo: #4f46e5;
+  --home-link: #5c6270;
+  --home-link-hover: #151923;
+}
+
+/* Indigo emphasis/links adapt to a higher-contrast tone in light mode */
+html.light .text-indigo-300 {
+  color: var(--accent-indigo);
+}
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1);
 }
 
 @theme inline {
@@ -152,6 +171,7 @@ body {
   background-attachment: fixed;
 }
 
+
 a {
   color: var(--link);
   text-underline-offset: 3px;
@@ -208,6 +228,64 @@ a:hover {
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Chat messages — indigo scrollbar */
+.chat-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(129, 140, 248, 0.7) rgba(255, 255, 255, 0.06);
+}
+
+.chat-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(129, 140, 248, 0.7);
+  border-radius: 999px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(165, 180, 252, 0.9);
+}
+
+@keyframes chat-panel-desktop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes chat-panel-desktop-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@media (min-width: 768px) {
+  .chat-panel-enter {
+    transform-origin: bottom right;
+    animation: chat-panel-desktop-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .chat-panel-exit {
+    transform-origin: bottom right;
+    animation: chat-panel-desktop-out 0.28s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
 }
 
 /* /hi tech stack — infinite marquee (Aceternity-style, CSS-only) */
@@ -312,12 +390,80 @@ a:hover {
     animation: none;
   }
 
+  .chat-panel-enter,
+  .chat-panel-exit {
+    animation: none;
+  }
+
 }
 
 html.light .hi-tech-pill {
   border-color: #d4d4d8;
   background-color: #f4f4f5;
   color: #18181b;
+}
+
+/* Home "Now" cards — theme-aware tinted glass (dark defaults, light overrides) */
+.now-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.now-card-amber {
+  background-image: linear-gradient(to bottom right, rgba(93, 85, 36, 0.26), rgba(43, 42, 24, 0.16), transparent);
+}
+.now-card-amber:hover {
+  background-image: linear-gradient(to bottom right, rgba(107, 97, 40, 0.32), rgba(43, 42, 24, 0.22), transparent);
+}
+.now-card-teal {
+  background-image: linear-gradient(to bottom right, rgba(29, 74, 95, 0.24), rgba(19, 39, 51, 0.16), transparent);
+}
+.now-card-teal:hover {
+  background-image: linear-gradient(to bottom right, rgba(36, 90, 115, 0.3), rgba(19, 39, 51, 0.22), transparent);
+}
+.now-card-mauve {
+  background-image: linear-gradient(to bottom right, rgba(90, 46, 73, 0.24), rgba(42, 27, 41, 0.16), transparent);
+}
+.now-card-mauve:hover {
+  background-image: linear-gradient(to bottom right, rgba(107, 55, 87, 0.3), rgba(42, 27, 41, 0.22), transparent);
+}
+
+html.light .now-card {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+html.light .now-card-amber {
+  background-image: linear-gradient(to bottom right, rgba(202, 158, 38, 0.16), rgba(202, 158, 38, 0.06), transparent);
+}
+html.light .now-card-amber:hover {
+  background-image: linear-gradient(to bottom right, rgba(202, 158, 38, 0.24), rgba(202, 158, 38, 0.1), transparent);
+}
+html.light .now-card-teal {
+  background-image: linear-gradient(to bottom right, rgba(28, 110, 140, 0.15), rgba(28, 110, 140, 0.05), transparent);
+}
+html.light .now-card-teal:hover {
+  background-image: linear-gradient(to bottom right, rgba(28, 110, 140, 0.22), rgba(28, 110, 140, 0.09), transparent);
+}
+html.light .now-card-mauve {
+  background-image: linear-gradient(to bottom right, rgba(160, 70, 125, 0.14), rgba(160, 70, 125, 0.05), transparent);
+}
+html.light .now-card-mauve:hover {
+  background-image: linear-gradient(to bottom right, rgba(160, 70, 125, 0.22), rgba(160, 70, 125, 0.09), transparent);
+}
+
+/* Card hairline borders that are white-on-dark by default */
+html.light .border-hairline {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+/* Shelf row glow: shown in dark mode, removed in light mode (avoids a grey panel/layer) */
+.shelf-row {
+  box-shadow: var(--shelf-row-shadow, none);
+}
+html.light .shelf-row {
+  box-shadow: none;
+}
+
+/* Starfield + shooting stars are a dark-mode ambience only */
+html.light .stars-ambient {
+  display: none;
 }
 
 .book-shelf {

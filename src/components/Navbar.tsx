@@ -3,7 +3,7 @@
 import LiveClock from "@/components/LiveClock";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -33,12 +33,45 @@ function SunIcon() {
   );
 }
 
+function MoonIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <path
+        d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const trackRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    setTheme(document.documentElement.classList.contains("light") ? "light" : "dark");
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      const root = document.documentElement;
+      root.classList.toggle("light", next === "light");
+      try {
+        window.localStorage.setItem("theme", next);
+      } catch {
+        // ignore storage failures (private mode, etc.)
+      }
+      return next;
+    });
+  }, []);
 
   const activeIndex = useMemo(
     () => navLinks.findIndex((link) => linkIsActive(link.href, pathname)),
@@ -136,13 +169,15 @@ export default function Navbar() {
 
         <div className="h-5 w-px shrink-0 bg-[var(--nav-divider)] transition-colors duration-300" aria-hidden />
 
-        <span
-          className="flex shrink-0 items-center justify-center rounded-full p-1.5 text-[var(--nav-muted)]"
-          aria-label="Theme icon"
-          role="img"
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="flex shrink-0 items-center justify-center rounded-full p-1.5 text-[var(--nav-muted)] transition-colors duration-200 hover:bg-[var(--nav-pill)] hover:text-[var(--nav-muted-hover)]"
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
-          <SunIcon />
-        </span>
+          {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+        </button>
       </div>
     </nav>
   );

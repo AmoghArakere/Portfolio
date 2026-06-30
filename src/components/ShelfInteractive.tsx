@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { type MouseEvent, useEffect, useMemo, useState } from "react";
+import { type CSSProperties, type MouseEvent, useEffect, useMemo, useState } from "react";
 import {
   shelfInteractiveSections,
   type ShelfInteractiveItem,
@@ -318,8 +318,8 @@ export default function ShelfInteractive() {
             </div>
             <div
               data-shelf-row
-              className="no-scrollbar relative z-20 flex items-end gap-[3px] overflow-x-auto overflow-y-visible rounded-md pb-1 pl-0.5"
-              style={{ boxShadow: catTheme.rowShadow }}
+              className="shelf-row no-scrollbar relative z-20 flex items-end gap-[3px] overflow-x-auto overflow-y-visible rounded-md pb-1 pl-0.5"
+              style={{ "--shelf-row-shadow": catTheme.rowShadow } as CSSProperties}
             >
               {section.items.map((item, idx) => {
                 const isSel = Boolean(sel && sel.sectionId === section.id && sel.index === idx);
