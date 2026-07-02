@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
 import HomeHeroName from "@/components/HomeHeroName";
 import HomeContactActions from "@/components/HomeContactActions";
 import HomeWelcomeAvatar from "@/components/HomeWelcomeAvatar";
 import MovingBorderLink from "@/components/MovingBorderLink";
 import PageHeaderLabel from "@/components/PageHeaderLabel";
-import ProgressBar from "@/components/ProgressBar";
 import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
-import TechBadge from "@/components/TechBadge";
 import { getAllPosts } from "@/lib/mdx";
-import { nowData } from "@/data/now";
 import { getSpotifyNowPlaying } from "@/lib/spotify";
 import { getGithubContributions } from "@/lib/github";
 import { homeNameFont } from "@/lib/homeNameFont";
@@ -99,7 +95,7 @@ export default async function Home() {
 
       <section>
         <h2 className="text-xl font-semibold">Now</h2>
-        <p className="text-[var(--muted)] mt-1">A snapshot of what I am focused on right now. Reading, thinking, building.</p>
+        <p className="text-[var(--muted)] mt-1">What I am listening to right now.</p>
         <div className={`group mt-6 overflow-hidden ${homeCard}`}>
           <div className="flex items-center justify-between gap-3 p-4">
             <div className="flex min-w-0 items-center gap-3">
@@ -131,48 +127,6 @@ export default async function Home() {
                 <ExternalLinkGlyph className="size-3" />
               </a>
             ) : null}
-          </div>
-        </div>
-        <div className="mt-6 grid md:grid-cols-3 gap-3">
-          <div className="now-card now-card-amber relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
-            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
-            <p className="text-xs text-[var(--muted)] mb-1">Building</p>
-            <Link href={nowData.building.href} className="font-semibold text-lg">
-              {nowData.building.title}
-            </Link>
-            <p className="text-[var(--muted)] mt-1">{nowData.building.description}</p>
-            <div className="flex gap-2 mt-2">
-              {nowData.building.tags.map((tag) => (
-                <TechBadge key={tag} label={tag} />
-              ))}
-            </div>
-            <ProgressBar value={nowData.building.progress} />
-          </div>
-          <div className="now-card now-card-teal relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
-            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
-            <p className="text-sm text-[var(--muted)] mb-2">Reading</p>
-            <ul className="space-y-1">
-              {nowData.reading.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span aria-hidden className="mt-[2px] shrink-0 text-[var(--muted)]">
-                    •
-                  </span>
-                  <span className="min-w-0">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="now-card now-card-mauve relative overflow-visible rounded-xl p-4 backdrop-blur-md transition duration-200 hover:animate-home-card-wobble">
-            <span className="pointer-events-none absolute -top-2 left-1/2 z-10 size-3 -translate-x-1/2 rounded-full bg-[#8c3b32] shadow-[0_0_0_1px_rgba(255,255,255,.12),0_2px_4px_rgba(0,0,0,.45)]" aria-hidden />
-            <p className="text-sm text-[var(--muted)] mb-2">{"// thoughts"}</p>
-            <div className="space-y-1 text-[var(--muted)]">
-              {nowData.thoughts.map((thought) => (
-                <p key={thought}>
-                  <span className="text-[var(--accent)]">{"// "}</span>
-                  {thought}
-                </p>
-              ))}
-            </div>
           </div>
         </div>
       </section>

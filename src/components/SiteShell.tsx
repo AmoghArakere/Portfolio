@@ -15,6 +15,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isAbout = pathname.startsWith("/about");
   const isProjects = pathname.startsWith("/projects");
   const isHome = pathname === "/";
+
   if (isBlog) {
     return (
       <>

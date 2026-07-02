@@ -71,6 +71,9 @@
   /* Home contact row links (grey idle, bright on hover) */
   --home-link: rgba(255, 255, 255, 0.7);
   --home-link-hover: #ffffff;
+  --scrollbar-thumb: rgba(129, 140, 248, 0.75);
+  --scrollbar-thumb-hover: rgba(165, 180, 252, 0.95);
+  --scrollbar-track: rgba(255, 255, 255, 0.06);
 }
 
 html.light {
@@ -101,6 +104,9 @@ html.light {
   --accent-indigo: #4f46e5;
   --home-link: #5c6270;
   --home-link-hover: #151923;
+  --scrollbar-thumb: rgba(79, 70, 229, 0.55);
+  --scrollbar-thumb-hover: rgba(79, 70, 229, 0.78);
+  --scrollbar-track: rgba(15, 23, 42, 0.08);
 }
 
 /* Indigo emphasis/links adapt to a higher-contrast tone in light mode */
@@ -170,7 +176,14 @@ body {
   background-size: auto, auto, 28px 28px, 28px 28px;
   background-attachment: fixed;
 }
-
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+html::-webkit-scrollbar { width: 8px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 999px; }
+html::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 
 a {
   color: var(--link);
@@ -233,7 +246,7 @@ a:hover {
 /* Chat messages — indigo scrollbar */
 .chat-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(129, 140, 248, 0.7) rgba(255, 255, 255, 0.06);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 .chat-scrollbar::-webkit-scrollbar {
@@ -241,17 +254,17 @@ a:hover {
 }
 
 .chat-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--scrollbar-track);
   border-radius: 999px;
 }
 
 .chat-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(129, 140, 248, 0.7);
+  background: var(--scrollbar-thumb);
   border-radius: 999px;
 }
 
 .chat-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(165, 180, 252, 0.9);
+  background: var(--scrollbar-thumb-hover);
 }
 
 @keyframes chat-panel-desktop-in {
