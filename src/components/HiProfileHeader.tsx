@@ -17,10 +17,10 @@ const HI_FLIP_WORDS = [
 
 function GithubIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="block h-[13px] w-[13px] shrink-0" aria-hidden>
+    <svg viewBox="0 0 24 24" className="block h-3.5 w-3.5 shrink-0" aria-hidden>
       <path
         fill="currentColor"
-        d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2.2c-3.4.8-4.1-1.4-4.1-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.8 1.1 1.8 1.1 1 .1 2 .8 2.5 1.8.9.1 1.9.1 2.8 0 .3-.8.8-1.4 1.5-1.8-2.8-.3-5.8-1.4-5.8-6.2 0-1.4.5-2.6 1.3-3.5-.2-.3-.6-1.6.1-3.3 0 0 1.1-.3 3.6 1.3a12 12 0 0 1 6.6 0c2.5-1.6 3.6-1.3 3.6-1.3.7 1.7.3 3 .1 3.3.8.9 1.3 2.1 1.3 3.5 0 4.8-3 5.9-5.8 6.2.5.4 1 .9 1 2v3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z"
+        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.114 2.504.336 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.097c0-6.627-5.373-12-12-12z"
       />
     </svg>
   );
@@ -43,6 +43,17 @@ function LinkedInIcon() {
       <path
         fill="currentColor"
         d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.2 2.3 4.2 5.3v6.4ZM5.2 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13.1H3.4V9H7v11.5Z"
+      />
+    </svg>
+  );
+}
+
+function SubstackIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="block h-[13px] w-[13px] shrink-0" aria-hidden>
+      <path
+        fill="currentColor"
+        d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46z"
       />
     </svg>
   );
@@ -167,7 +178,7 @@ export default function HiProfileHeader() {
 
           <a
             href="mailto:amogh.nagaraj03@gmail.com"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-[var(--text)] shadow-[inset_0_1px_0_rgba(255,255,255,.06)] transition hover:bg-white/10 !no-underline hover:!no-underline"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--contact-panel-border)] bg-[var(--nav-pill)] px-4 py-2 text-sm font-semibold text-[var(--text)] shadow-[inset_0_1px_0_rgba(255,255,255,.06)] transition hover:bg-[var(--nav-time-bg)] !no-underline hover:!no-underline"
           >
             <svg viewBox="0 0 24 24" className="size-4" aria-hidden>
               <path
@@ -187,6 +198,7 @@ export default function HiProfileHeader() {
             { label: "GitHub", href: "https://github.com/AmoghArakere", icon: <GithubIcon /> },
             { label: "Twitter", href: "https://twitter.com/nrupatungaa", icon: <XIcon /> },
             { label: "LinkedIn", href: "https://linkedin.com/in/amogh07/", icon: <LinkedInIcon /> },
+            { label: "Substack", href: "https://substack.com/@voiceofbrown", icon: <SubstackIcon /> },
           ].map((item) => (
             <a
               key={item.label}
@@ -195,7 +207,7 @@ export default function HiProfileHeader() {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 overflow-visible rounded-xl bg-[var(--nav-pill)] px-2.5 py-1.5 text-sm font-semibold leading-none text-[var(--text)] shadow-[inset_0_1px_0_rgba(255,255,255,.06)] transition hover:bg-[var(--nav-time-bg)] !no-underline hover:!no-underline"
             >
-              <span className="inline-flex size-4 shrink-0 items-center justify-center overflow-visible text-[var(--muted)]" aria-hidden>{item.icon}</span>
+              <span className="inline-flex size-[18px] shrink-0 items-center justify-center overflow-visible text-[var(--muted)]" aria-hidden>{item.icon}</span>
               {item.label}
             </a>
           ))}

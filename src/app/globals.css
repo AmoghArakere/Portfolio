@@ -25,12 +25,15 @@
   --bg-grid: rgba(255, 255, 255, 0.02);
   --nav-bg: #121212;
   --nav-border: #2a2a2a;
+  --nav-glass-bg: rgba(72, 72, 76, 0.28);
+  --nav-glass-border: rgba(255, 255, 255, 0.1);
   --nav-time-bg: #1c1c1c;
-  --nav-pill: #252525;
-  --nav-muted: #737373;
-  --nav-muted-hover: #a3a3a3;
+  --nav-time-glass: rgba(96, 96, 100, 0.22);
+  --nav-pill: rgba(255, 255, 255, 0.16);
+  --nav-muted: rgba(255, 255, 255, 0.58);
+  --nav-muted-hover: rgba(255, 255, 255, 0.82);
   --nav-active-text: #ffffff;
-  --nav-divider: #333333;
+  --nav-divider: rgba(255, 255, 255, 0.12);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -92,12 +95,15 @@ html.light {
   --bg-grid: rgba(15, 23, 42, 0.035);
   --nav-bg: #ececf0;
   --nav-border: #d3d5dc;
+  --nav-glass-bg: rgba(255, 255, 255, 0.52);
+  --nav-glass-border: rgba(15, 23, 42, 0.08);
   --nav-time-bg: #e2e4eb;
-  --nav-pill: #d8dce7;
-  --nav-muted: #5c6270;
-  --nav-muted-hover: #2e3440;
+  --nav-time-glass: rgba(255, 255, 255, 0.68);
+  --nav-pill: rgba(15, 23, 42, 0.1);
+  --nav-muted: rgba(15, 23, 42, 0.55);
+  --nav-muted-hover: rgba(15, 23, 42, 0.88);
   --nav-active-text: #151923;
-  --nav-divider: #c8cbd4;
+  --nav-divider: rgba(15, 23, 42, 0.12);
   --contact-panel-border: #d1d5db;
   --input-placeholder: #a8b0bd;
   --contrib-empty: #e5e7eb;
@@ -168,13 +174,20 @@ body {
   font-size: 14px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+.site-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--bg);
   background-image:
     radial-gradient(circle at 15% 20%, var(--bg-radial-a), transparent 30%),
     radial-gradient(circle at 80% 70%, var(--bg-radial-b), transparent 28%),
     linear-gradient(var(--bg-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
   background-size: auto, auto, 28px 28px, 28px 28px;
-  background-attachment: fixed;
 }
 html {
   scrollbar-width: thin;
@@ -234,6 +247,70 @@ a:hover {
 .navbar-pill a:focus {
   text-decoration: none;
 }
+
+.navbar-pill-bar {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--nav-glass-border);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.navbar-pill-glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--nav-glass-bg);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+html.light .navbar-pill-bar {
+  box-shadow:
+    0 8px 32px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.navbar-pill-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-pill-time {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-pill-time-glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--nav-time-glass);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+}
+
+.navbar-pill-time-inner {
+  position: relative;
+  z-index: 1;
+}
+
+html.light .navbar-pill-time {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.navbar-pill-highlight {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--nav-pill);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+html.light .navbar-pill-highlight {
+  border-color: rgba(15, 23, 42, 0.08);
+}
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -270,34 +347,42 @@ a:hover {
 @keyframes chat-panel-desktop-in {
   from {
     opacity: 0;
-    transform: scale(0.88);
+    transform: scale(0.78) translateY(12px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
 @keyframes chat-panel-desktop-out {
   from {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
   to {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.86) translateY(10px);
   }
+}
+
+.chat-panel-enter {
+  transform-origin: calc(100% - 1.75rem) calc(100% - 1.75rem);
+  animation: chat-panel-desktop-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chat-panel-exit {
+  transform-origin: calc(100% - 1.75rem) calc(100% - 1.75rem);
+  animation: chat-panel-desktop-out 0.32s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @media (min-width: 768px) {
   .chat-panel-enter {
     transform-origin: bottom right;
-    animation: chat-panel-desktop-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .chat-panel-exit {
     transform-origin: bottom right;
-    animation: chat-panel-desktop-out 0.28s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
 }
 

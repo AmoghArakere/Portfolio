@@ -19,6 +19,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   if (isBlog) {
     return (
       <>
+        <div className="site-grid-bg" aria-hidden />
         <StarsAmbientBackground />
         <div className="relative z-10 bg-transparent">{children}</div>
         <ChatWidget />
@@ -28,7 +29,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Navbar />
+      <div className="site-grid-bg" aria-hidden />
       <StarsAmbientBackground />
       <main
         className={`${
@@ -45,11 +46,12 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 : isCli
                   ? "max-w-[960px]"
                   : "max-w-[680px]"
-        } relative z-10 mx-auto w-full bg-transparent overflow-visible px-6 ${isShelf ? "py-6" : "py-12"} animate-fade-in`}
+        } relative z-10 mx-auto w-full bg-transparent overflow-visible px-6 pt-[4.25rem] ${isShelf ? "pb-6" : "pb-12"} animate-fade-in`}
       >
         {children}
       </main>
       <Footer />
+      <Navbar />
       <ChatWidget />
     </>
   );

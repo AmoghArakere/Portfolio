@@ -123,23 +123,26 @@ export default function Navbar() {
   }, [applyPill]);
 
   const linkBase =
-    "relative z-10 shrink-0 rounded-full px-3 py-1.5 font-mono text-sm no-underline outline-none transition-colors duration-300 ease-out";
+    "relative z-10 shrink-0 rounded-full px-2.5 py-1 font-mono text-sm no-underline outline-none transition-colors duration-300 ease-out";
 
   return (
-    <nav className="navbar-pill sticky top-0 z-50 mx-auto max-w-[760px] px-6 py-4">
-      <div className="flex w-full items-center gap-2.5 rounded-full border border-[var(--nav-border)] bg-[var(--nav-bg)] px-3 py-2 shadow-sm transition-colors duration-300">
-        <div className="shrink-0 rounded-full bg-[var(--nav-time-bg)] px-3 py-1.5 transition-colors duration-300">
-          <LiveClock className="font-mono text-xs text-[var(--nav-muted)]" />
-        </div>
+    <nav className="navbar-pill pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-6 py-3">
+      <div className="navbar-pill-bar pointer-events-auto relative inline-block w-fit max-w-[calc(100vw-3rem)] rounded-full transition-[border-color,box-shadow] duration-300">
+        <div className="navbar-pill-glass backdrop-blur-2xl backdrop-saturate-150" aria-hidden />
+        <div className="navbar-pill-inner inline-flex items-center gap-2 px-2.5 py-1.5">
+          <div className="navbar-pill-time shrink-0 rounded-full px-2.5 py-1 transition-colors duration-300">
+            <div className="navbar-pill-time-glass backdrop-blur-xl backdrop-saturate-150" aria-hidden />
+            <LiveClock className="navbar-pill-time-inner font-mono text-xs text-[var(--nav-muted)]" />
+          </div>
 
-        <div
-          ref={trackRef}
-          className="no-scrollbar relative flex min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto py-0.5 sm:gap-1"
-          onMouseLeave={() => setHovered(null)}
-        >
+          <div
+            ref={trackRef}
+            className="no-scrollbar relative flex items-center gap-0.5 overflow-x-auto sm:gap-1"
+            onMouseLeave={() => setHovered(null)}
+          >
           <span
             ref={pillRef}
-            className="pointer-events-none absolute left-0 top-0.5 bottom-0.5 w-0 rounded-full bg-[var(--nav-pill)] opacity-0 will-change-[left,width] transition-colors duration-300"
+            className="navbar-pill-highlight pointer-events-none absolute left-0 top-0 bottom-0 w-0 rounded-full opacity-0 will-change-[left,width] transition-[left,width,opacity] duration-[380ms] ease-[cubic-bezier(0.25,0.08,0.25,1)]"
             aria-hidden
           />
 
@@ -167,17 +170,18 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="h-5 w-px shrink-0 bg-[var(--nav-divider)] transition-colors duration-300" aria-hidden />
+        <div className="h-4 w-px shrink-0 bg-[var(--nav-divider)] transition-colors duration-300" aria-hidden />
 
         <button
           type="button"
           onClick={toggleTheme}
-          className="flex shrink-0 items-center justify-center rounded-full p-1.5 text-[var(--nav-muted)] transition-colors duration-200 hover:bg-[var(--nav-pill)] hover:text-[var(--nav-muted-hover)]"
+          className="flex shrink-0 items-center justify-center rounded-full border border-transparent p-1 text-[var(--nav-muted)] transition-colors duration-200 hover:border-white/10 hover:bg-[var(--nav-pill)] hover:text-[var(--nav-muted-hover)]"
           aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
           {theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
+        </div>
       </div>
     </nav>
   );

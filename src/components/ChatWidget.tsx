@@ -5,6 +5,7 @@ import type { ChatResponseBody } from "@/lib/chatTypes";
 
 const BOT_AVATAR = "/chat/nrupabot.png";
 const MIN_TYPING_DELAY_MS = 1000;
+const CHAT_CLOSE_MS = 320;
 
 const quickPrompts = [
   "What projects have you built?",
@@ -30,21 +31,48 @@ function ChatBubbleIcon({ className = "h-7 w-7" }: { className?: string }) {
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Array<{ role: "user" | "bot"; text: string; sources?: ChatResponseBody["sources"] }>>([]);
   const [typing, setTyping] = useState(false);
   const messagesRef = useRef<HTMLDivElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+
+  const panelVisible = open || closing;
 
   useEffect(() => {
     if (!messagesRef.current) return;
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
   }, [messages, typing, open]);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  const openChat = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setClosing(false);
+    setOpen(true);
+  };
+
   const closeChat = () => {
-    setOpen(false);
-    setInput("");
-    setMessages([]);
-    setTyping(false);
+    if (closing) return;
+    setClosing(true);
+    closeTimerRef.current = window.setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+      setInput("");
+      setMessages([]);
+      setTyping(false);
+      closeTimerRef.current = null;
+    }, CHAT_CLOSE_MS);
   };
 
   const sendMessage = async (rawText: string) => {
@@ -79,25 +107,27 @@ export default function ChatWidget() {
     }
   };
 
-  if (!open) {
-    return (
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--surface)]/95 shadow-[0_10px_30px_rgba(0,0,0,.45)] transition-colors hover:bg-[#171717]"
-        aria-label="Open nrupabot chat"
-      >
-        <ChatBubbleIcon className="h-8 w-8" />
-      </button>
-    );
-  }
-
   return (
-    <div
-      className="fixed bottom-5 right-5 z-50 h-[520px] w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[#1a202b] bg-[#0f1116] shadow-[0_24px_70px_rgba(0,0,0,.6)]"
-      role="dialog"
-      aria-modal="true"
-      aria-label="nrupabot chat"
-    >
+    <>
+      {!panelVisible ? (
+        <button
+          onClick={openChat}
+          className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--surface)]/95 shadow-[0_10px_30px_rgba(0,0,0,.45)] transition-colors hover:bg-[#171717]"
+          aria-label="Open nrupabot chat"
+        >
+          <ChatBubbleIcon className="h-8 w-8" />
+        </button>
+      ) : null}
+
+      {panelVisible ? (
+        <div
+          className={`fixed bottom-5 right-5 z-50 h-[520px] w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[#1a202b] bg-[#0f1116] shadow-[0_24px_70px_rgba(0,0,0,.6)] will-change-transform ${
+            closing ? "chat-panel-exit" : "chat-panel-enter"
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="nrupabot chat"
+        >
       <div className="flex items-center justify-between border-b border-[#111723] px-4 py-3">
         <div className="flex items-center gap-3">
           <img src={BOT_AVATAR} alt="nrupabot avatar" className="h-8 w-8 rounded-full object-cover object-[50%_18%]" />
@@ -180,5 +210,7 @@ export default function ChatWidget() {
         </form>
       </div>
     </div>
+      ) : null}
+    </>
   );
 }

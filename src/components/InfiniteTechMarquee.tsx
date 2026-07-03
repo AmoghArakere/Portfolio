@@ -21,7 +21,7 @@ const DEFAULT_ITEMS: TechMarqueeItem[] = [
   { iconSlug: "microsoftazure", iconColor: "0078D4", label: "Azure", localIcon: "/tech/azure.png" },
   { iconSlug: "dotnet", iconColor: "512BD4", label: ".NET Core" },
   { iconSlug: "python", iconColor: "3776AB", label: "Python" },
-  { iconSlug: "anthropic", iconColor: "D97757", label: "Claude", localIcon: "/tech/claude.png" },
+  { iconSlug: "claude", iconColor: "D97757", label: "Claude", localIcon: "/tech/claude.png" },
   { iconSlug: "postman", iconColor: "FF6C37", label: "Postman" },
   { iconSlug: "apachekafka", iconColor: "D2D2D2", label: "Kafka" },
   { iconSlug: "git", iconColor: "F05032", label: "Git" },
@@ -36,13 +36,13 @@ function TechPill({ item }: { item: TechMarqueeItem }) {
 
   return (
     <div className="hi-tech-pill inline-flex h-9 shrink-0 items-center gap-2 rounded-full border border-zinc-700 bg-black px-2.5 pl-2 pr-3 font-sans text-sm font-medium text-white shadow-sm">
-      {/* eslint-disable-next-line @next/next/no-img-element -- external SVG badge */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- local brand PNG or external SVG badge */}
       <img
         src={src}
         alt=""
         width={20}
         height={20}
-        className="size-5 shrink-0 object-contain"
+        className={`size-5 shrink-0 object-contain ${item.localIcon === "/tech/claude.png" ? "rounded-[4px]" : ""}`}
         loading="lazy"
         decoding="async"
       />
