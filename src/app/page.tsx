@@ -5,9 +5,9 @@ import HomeContactActions from "@/components/HomeContactActions";
 import HomeWelcomeAvatar from "@/components/HomeWelcomeAvatar";
 import MovingBorderLink from "@/components/MovingBorderLink";
 import PageHeaderLabel from "@/components/PageHeaderLabel";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
+import LastFmRecentTrack from "@/components/LastFmRecentTrack";
 import { getAllPosts } from "@/lib/mdx";
-import { getSpotifyNowPlaying } from "@/lib/spotify";
+import { getLastFmRecentTrack } from "@/lib/lastfm";
 import { getGithubContributions } from "@/lib/github";
 import { homeNameFont } from "@/lib/homeNameFont";
 
@@ -41,8 +41,8 @@ function ExternalLinkGlyph({ className }: { className?: string }) {
 export default async function Home() {
   const latestPost = (await getAllPosts())[0];
   const githubUser = process.env.GITHUB_USERNAME ?? "AmoghArakere";
-  const [spotify, contributions] = await Promise.all([
-    getSpotifyNowPlaying(),
+  const [lastfmResult, contributions] = await Promise.all([
+    getLastFmRecentTrack(),
     getGithubContributions(githubUser),
   ]);
 
@@ -94,39 +94,9 @@ export default async function Home() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold">Now</h2>
-        <p className="text-[var(--muted)] mt-1">What I am listening to right now.</p>
-        <div className={`group mt-6 overflow-hidden ${homeCard}`}>
-          <div className="flex items-center justify-between gap-3 p-4">
-            <div className="flex min-w-0 items-center gap-3">
-              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-[var(--tag-bg)]">
-                {spotify?.albumImageUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={spotify.albumImageUrl} alt={spotify.title} className="h-full w-full object-cover" />
-                ) : null}
-              </div>
-              <div>
-                <SpotifyNowPlaying
-                  key={`${spotify?.title ?? "none"}-${spotify?.progressMs ?? 0}`}
-                  isPlaying={Boolean(spotify?.isPlaying)}
-                  title={spotify?.title ?? "Connect Spotify to show live track"}
-                  artist={spotify?.artist ?? "No track available"}
-                  progressMs={spotify?.progressMs}
-                  durationMs={spotify?.durationMs}
-                />
-              </div>
-            </div>
-            {spotify?.songUrl ? (
-              <a
-                href={spotify.songUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[var(--nav-pill)] text-emerald-400 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] transition-colors hover:bg-[var(--nav-time-bg)] hover:text-emerald-300 !no-underline hover:!no-underline"
-                aria-label="Open track on Spotify"
-              >
-                <ExternalLinkGlyph className="size-3" />
-              </a>
-            ) : null}
+        <div className={`group ${homeCard}`}>
+          <div className="p-4">
+            <LastFmRecentTrack result={lastfmResult} />
           </div>
         </div>
       </section>

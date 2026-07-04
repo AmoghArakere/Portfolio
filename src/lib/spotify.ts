@@ -1,3 +1,6 @@
+/** Re-enable to show Spotify on the homepage (Last.fm is used instead). */
+export const SPOTIFY_UI_ENABLED = false;
+
 type SpotifyTrack = {
   title: string;
   artist: string;
@@ -64,6 +67,8 @@ function mapTrack(payload: {
 }
 
 export async function getSpotifyNowPlaying(): Promise<SpotifyTrack | null> {
+  if (!SPOTIFY_UI_ENABLED) return null;
+
   const accessToken = await getAccessToken();
   if (!accessToken) return null;
 

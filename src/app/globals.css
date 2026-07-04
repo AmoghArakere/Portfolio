@@ -77,6 +77,18 @@
   --scrollbar-thumb: rgba(129, 140, 248, 0.75);
   --scrollbar-thumb-hover: rgba(165, 180, 252, 0.95);
   --scrollbar-track: rgba(255, 255, 255, 0.06);
+  --chat-panel-bg: #0f1116;
+  --chat-panel-border: #1a202b;
+  --chat-panel-divider: #111723;
+  --chat-panel-subtle-border: #171f2b;
+  --chat-panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  --chat-fab-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --chat-fab-hover: #171717;
+  --chat-user-bg: rgba(99, 102, 241, 0.2);
+  --chat-user-border: rgba(49, 46, 129, 0.45);
+  --chat-user-text: #e0e7ff;
+  --chat-icon-fill: #d8dbe0;
+  --chat-icon-dot: #5f6670;
 }
 
 html.light {
@@ -113,6 +125,18 @@ html.light {
   --scrollbar-thumb: rgba(79, 70, 229, 0.55);
   --scrollbar-thumb-hover: rgba(79, 70, 229, 0.78);
   --scrollbar-track: rgba(15, 23, 42, 0.08);
+  --chat-panel-bg: #ffffff;
+  --chat-panel-border: #d1d5db;
+  --chat-panel-divider: #e5e7eb;
+  --chat-panel-subtle-border: #d1d5db;
+  --chat-panel-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+  --chat-fab-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  --chat-fab-hover: #ececf0;
+  --chat-user-bg: rgba(79, 70, 229, 0.12);
+  --chat-user-border: rgba(79, 70, 229, 0.28);
+  --chat-user-text: #3730a3;
+  --chat-icon-fill: #b4bac4;
+  --chat-icon-dot: #9aa3b0;
 }
 
 /* Indigo emphasis/links adapt to a higher-contrast tone in light mode */
@@ -600,6 +624,26 @@ html.light .stars-ambient {
   background: var(--text);
   transform-origin: bottom;
   animation: spotifyEq 900ms ease-in-out infinite;
+}
+
+.lastfm-eq-bar {
+  transform-origin: center bottom;
+  transform-box: fill-box;
+  animation: spotifyEq 900ms ease-in-out infinite;
+}
+
+.lastfm-live-progress {
+  width: 42%;
+  animation: lastfmLiveProgress 2.4s ease-in-out infinite;
+}
+
+@keyframes lastfmLiveProgress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
 }
 
 .dark {

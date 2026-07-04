@@ -3,10 +3,10 @@ import Link from "next/link";
 import HiProfileHeader from "@/components/HiProfileHeader";
 import CometCard from "@/components/CometCard";
 import InfiniteTechMarquee from "@/components/InfiniteTechMarquee";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
+import LastFmRecentTrack from "@/components/LastFmRecentTrack";
 import HiExperienceCard from "@/components/HiExperienceCard";
 import FocusProjectCards from "@/components/FocusProjectCards";
-import { getSpotifyNowPlaying } from "@/lib/spotify";
+import { getLastFmRecentTrack } from "@/lib/lastfm";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ type HiExperienceHighlight = {
 };
 
 export default async function HiPage() {
-  const spotify = await getSpotifyNowPlaying();
+  const lastfmResult = await getLastFmRecentTrack();
   const topProjects = projects.slice(0, 4);
   const experienceHighlights: HiExperienceHighlight[] = [
     {
@@ -78,6 +78,7 @@ export default async function HiPage() {
       ],
     },
   ];
+
   const homeCard =
     "rounded-xl bg-[var(--surface)]/55 backdrop-blur-md transition-colors duration-200 hover:bg-[var(--surface)]/80";
 
@@ -90,39 +91,10 @@ export default async function HiPage() {
         <InfiniteTechMarquee />
       </section>
 
-      <section className="-ml-6 space-y-2 sm:-ml-3" aria-label="Spotify now playing">
-        <p className="text-sm text-[var(--muted)]">Recently <strong>listening</strong></p>
-        <div className={`group overflow-hidden ${homeCard}`}>
-          <div className="flex items-center justify-between gap-3 p-4">
-            <div className="flex min-w-0 items-center gap-3">
-              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-black/20">
-                {spotify?.albumImageUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={spotify.albumImageUrl} alt={spotify.title} className="h-full w-full object-cover" />
-                ) : null}
-              </div>
-              <div>
-                <SpotifyNowPlaying
-                  key={`${spotify?.title ?? "none"}-${spotify?.progressMs ?? 0}`}
-                  isPlaying={Boolean(spotify?.isPlaying)}
-                  title={spotify?.title ?? "Connect Spotify to show live track"}
-                  artist={spotify?.artist ?? "No track available"}
-                  progressMs={spotify?.progressMs}
-                  durationMs={spotify?.durationMs}
-                />
-              </div>
-            </div>
-            {spotify?.songUrl ? (
-              <a
-                href={spotify.songUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[var(--nav-pill)] text-emerald-400 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] transition-colors hover:bg-[var(--nav-time-bg)] hover:text-emerald-300 !no-underline hover:!no-underline"
-                aria-label="Open track on Spotify"
-              >
-                <ExternalLinkGlyph className="size-3" />
-              </a>
-            ) : null}
+      <section className="-ml-6 sm:-ml-3" aria-label="Last.fm recent track">
+        <div className={`group ${homeCard}`}>
+          <div className="p-4">
+            <LastFmRecentTrack result={lastfmResult} />
           </div>
         </div>
       </section>
