@@ -3,7 +3,7 @@ import BlogCard from "@/components/BlogCard";
 import { getAllPosts } from "@/lib/mdx";
 
 export const metadata: Metadata = {
-  title: "All Posts | Nrupa Blog",
+  title: "All Posts | mandakini Blog",
   description: "Archive of all blog posts.",
 };
 

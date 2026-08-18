@@ -17,7 +17,7 @@ type CliPost = {
 
 const SOCIAL = {
   github: "https://github.com/AmoghArakere",
-  twitter: "https://twitter.com/nrupatungaa",
+  twitter: "https://twitter.com/mandakinitungaa",
   linkedin: "https://linkedin.com/in/amogh07/",
 } as const;
 
@@ -64,7 +64,7 @@ function TrafficLights() {
   );
 }
 
-function NrupaMark() {
+function mandakiniMark() {
   return (
     <div className="relative select-none" aria-hidden>
       <div className="relative">
@@ -75,7 +75,7 @@ function NrupaMark() {
               "0 1px 0 rgb(0 0 0 / 0.55), 0 0 28px rgb(165 180 252 / 0.35), 0 0 48px rgb(129 140 248 / 0.2)",
           }}
         >
-          NRUPA
+          mandakini
         </p>
         <p className="mt-2 max-w-[18rem] font-mono text-[10px] font-medium uppercase leading-relaxed tracking-[0.42em] text-zinc-500">
           interactive shell
@@ -88,7 +88,7 @@ function NrupaMark() {
 function PromptLine({ cmd }: { cmd: string }) {
   return (
     <p className="font-mono text-[13px] leading-relaxed">
-      <span className="text-indigo-300">nrupa@terminal</span>
+      <span className="text-indigo-300">mandakini@terminal</span>
       <span className="text-zinc-100">:~$ </span>
       <span className="text-white">{cmd}</span>
     </p>
@@ -269,9 +269,9 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
 
       if (cmd0 === "whoami" || cmd0 === "about") {
         pushOutput([
-          "Amogh Nagaraj (nrupa)",
+          "Amogh Nagaraj (mandakini)",
           "Backend engineer — Go, Rust, TypeScript, distributed systems, and the messy edge of production.",
-          "Site: nrupa.tech",
+          "Site: mandakini.tech",
         ]);
         return;
       }
@@ -456,14 +456,14 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
       <div className="overflow-hidden rounded-xl border border-zinc-700/90 bg-zinc-950 shadow-[0_24px_80px_-20px_rgba(0,0,0,.85),0_0_0_1px_rgba(255,255,255,.04)]">
         <div className="flex items-center gap-3 border-b border-zinc-800/90 bg-zinc-900/95 px-3 py-2">
           <TrafficLights />
-          <p className="flex-1 text-center font-mono text-[11px] tracking-wide text-zinc-500">NRUPA ~ terminal</p>
+          <p className="flex-1 text-center font-mono text-[11px] tracking-wide text-zinc-500">mandakini ~ terminal</p>
           <span className="w-14 shrink-0" aria-hidden />
         </div>
 
         <div className="flex min-h-[min(72vh,640px)] flex-col bg-black">
           <div className="shrink-0 space-y-4 border-b border-zinc-800/80 p-4 sm:p-5">
-            <NrupaMark />
-            <p className="font-mono text-sm text-sky-400/95">Welcome to Nrupa&apos;s Terminal v2.0</p>
+            <mandakiniMark />
+            <p className="font-mono text-sm text-sky-400/95">Welcome to mandakini&apos;s Terminal v2.0</p>
             <p className="font-mono text-[13px] text-zinc-200">
               Type <span className="font-semibold text-indigo-300">help</span> for available commands
             </p>
@@ -489,7 +489,7 @@ export default function CliTerminal({ posts }: { posts: CliPost[] }) {
 
           <div className="shrink-0 border-t border-zinc-800/90 bg-black px-4 py-3 sm:px-5">
             <label className="flex items-center gap-1 font-mono text-[13px]">
-              <span className="shrink-0 text-indigo-300">nrupa@terminal</span>
+              <span className="shrink-0 text-indigo-300">mandakini@terminal</span>
               <span className="shrink-0 text-zinc-100">:~$</span>
               <input
                 ref={inputRef}

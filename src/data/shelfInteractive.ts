@@ -426,6 +426,18 @@ export const shelfInteractiveSections: ShelfInteractiveSection[] = [
         desc: "Practical guide to designing robust prompts and inputs for reliable generative AI outputs in production settings.",
         tags: ["prompt engineering", "generative ai", "llms"],
       },
+      {
+        type: "book",
+        title: "Inference Engineering",
+        sub: "Philip Kiely",
+        color: "#22b84a",
+        cover: "/books/inference-engineering-cover.png",
+        url: "https://www.baseten.co/inference-engineering/",
+        h: 205,
+        w: 45,
+        desc: "Guide to LLM inference in production — GPU hardware, quantization, serving frameworks, and deployment at scale.",
+        tags: ["inference", "llms", "production"],
+      },
     ],
   },
   {

@@ -6,7 +6,7 @@ import { nowData } from "@/data/now";
 import type { ChatContextChunk, ChatSource, RankedChunk } from "@/lib/chatTypes";
 
 const ABOUT_SUMMARY = [
-  "Amogh Nagaraj (nrupa) is a backend-focused engineer based in Bengaluru.",
+  "Amogh Nagaraj (mandakini) is a backend-focused engineer based in Bengaluru.",
   "Core focus areas include distributed systems, databases, observability, APIs, and reliable backend architecture.",
   "Primary stack includes Go, Rust, TypeScript, PostgreSQL, Redis, Docker, Kafka, and cloud-native tooling.",
 ];
@@ -23,7 +23,7 @@ const PROFILE_FACTS = [
   },
   {
     title: "Location and profile",
-    text: "Amogh Nagaraj (nrupa) is based in Bengaluru, India and focuses on backend and distributed systems engineering.",
+    text: "Amogh Nagaraj (mandakini) is based in Bengaluru, India and focuses on backend and distributed systems engineering.",
     keywords: ["location", "based", "bengaluru", "india", "who are you", "profile"],
   },
   {
@@ -144,7 +144,7 @@ async function buildChunks(): Promise<ChatContextChunk[]> {
       title: "About",
       text: line,
       url: "/about",
-      keywords: ["about", "nrupa", "amogh", "backend", "bengaluru"],
+      keywords: ["about", "mandakini", "amogh", "backend", "bengaluru"],
     });
   });
 

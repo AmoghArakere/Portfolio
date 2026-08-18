@@ -95,7 +95,7 @@ export default function ProjectsSearchView({ projects, githubExperiments }: Proj
   return (
     <div className="space-y-10">
       <div>
-        <p className="text-sm text-[var(--muted)] text-left">nrupa / projects</p>
+        <p className="text-sm text-[var(--muted)] text-left">mandakini / projects</p>
       </div>
 
       <div className="space-y-5">

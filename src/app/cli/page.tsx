@@ -3,7 +3,7 @@ import CliTerminal from "@/components/CliTerminal";
 import { getAllPosts } from "@/lib/mdx";
 
 export const metadata: Metadata = {
-  title: "CLI | Nrupa",
+  title: "CLI | mandakini",
   description: "Interactive terminal — projects, blog, links, and a few surprises.",
 };
 
@@ -19,7 +19,7 @@ export default async function CliPage() {
 
   return (
     <div className="py-1">
-      <h1 className="sr-only">NRUPA terminal</h1>
+      <h1 className="sr-only">mandakini terminal</h1>
       <CliTerminal posts={postsPayload} />
     </div>
   );

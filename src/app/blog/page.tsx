@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | Nrupa",
+  title: "Blog | mandakini",
   description: "Engineering lessons in plain words.",
 };
 
@@ -9,7 +9,7 @@ export default function BlogHomePage() {
   return (
     <div className="space-y-6">
       <section>
-        <h1 className="text-3xl font-semibold">nrupa&apos;s blog</h1>
+        <h1 className="text-3xl font-semibold">mandakini&apos;s blog</h1>
         <p className="text-[var(--muted)]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>

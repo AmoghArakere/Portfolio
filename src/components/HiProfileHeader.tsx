@@ -131,7 +131,7 @@ export default function HiProfileHeader() {
           <div className="min-w-0">
             <h1 className={`${hiNameFont.className} flex items-center gap-2 text-lg font-bold tracking-tight text-[var(--text)] sm:text-xl`}>
               <span>Amogh Nagaraj</span>
-              <span className="text-sm font-medium text-[var(--muted)] sm:text-base">@nrupa</span>
+              <span className="text-sm font-medium text-[var(--muted)] sm:text-base">@mandakini</span>
             </h1>
             <p className="mt-1 h-5 text-xs text-[var(--muted)]/85 sm:text-sm">
               <span
@@ -196,7 +196,7 @@ export default function HiProfileHeader() {
         <div className="mt-2 flex flex-wrap items-center gap-2">
           {[
             { label: "GitHub", href: "https://github.com/AmoghArakere", icon: <GithubIcon /> },
-            { label: "Twitter", href: "https://twitter.com/nrupatungaa", icon: <XIcon /> },
+            { label: "Twitter", href: "https://twitter.com/mandakinitungaa", icon: <XIcon /> },
             { label: "LinkedIn", href: "https://linkedin.com/in/amogh07/", icon: <LinkedInIcon /> },
             { label: "Substack", href: "https://substack.com/@voiceofbrown", icon: <SubstackIcon /> },
           ].map((item) => (

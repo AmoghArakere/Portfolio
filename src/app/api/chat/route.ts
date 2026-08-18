@@ -12,7 +12,7 @@ const RATE_LIMIT_MAX_REQUESTS = 20;
 const ipRateLimit = new Map<string, { count: number; resetAt: number }>();
 
 const OWNER_NAME = "Amogh Nagaraj";
-const OWNER_CALL_NAME = "nrupa";
+const OWNER_CALL_NAME = "mandakini";
 const LOCATION_REPLY = "I am from Bengaluru, Karnataka, India.";
 
 type ChatCategory = "in_scope" | "tech_general" | "unrelated" | "gibberish";
@@ -336,7 +336,7 @@ export async function POST(request: Request) {
 
     if (quotaBlocked) {
       return NextResponse.json({
-        answer: "uh-oh, nrupabot is unavailable rn. try again in a bit",
+        answer: "uh-oh, mandakinibot is unavailable rn. try again in a bit",
         sources,
       } satisfies ChatResponseBody);
     }

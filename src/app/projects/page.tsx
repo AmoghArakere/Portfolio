@@ -3,7 +3,7 @@ import ProjectsSearchView from "@/components/ProjectsSearchView";
 import { githubExperiments, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects | Nrupa",
+  title: "Projects | mandakini",
   description: "Systems projects and practical backend experiments.",
 };
 

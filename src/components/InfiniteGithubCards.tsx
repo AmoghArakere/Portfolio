@@ -13,7 +13,7 @@ export default function InfiniteGithubCards({ items }: InfiniteGithubCardsProps)
         {loop.map(([name, description], index) => (
           <a
             key={`${name}-${index}`}
-            href={`https://github.com/nrupa/${name}`}
+            href={`https://github.com/mandakini/${name}`}
             target="_blank"
             rel="noreferrer"
             className="block w-[19rem] max-w-[82vw] min-h-[9.5rem] shrink-0 rounded-2xl border border-white/10 bg-black/75 p-4 transition-colors duration-200 hover:border-white/20 hover:bg-black/90 !no-underline hover:!no-underline"

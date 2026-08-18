@@ -5,7 +5,7 @@ import PageHeaderLabel from "@/components/PageHeaderLabel";
 import { experience } from "@/data/work";
 
 export const metadata: Metadata = {
-  title: "About | Nrupa",
+  title: "About | mandakini",
   description: "Journey, tools, and philosophy behind what I build.",
 };
 
@@ -33,7 +33,7 @@ export default function AboutPage() {
 
           <Image src="/hi/avatar.png" className="h-48 w-48 rounded-xl object-cover object-[50%_18%]" alt="Amogh" width={192} height={192} />
           <div className="mt-4 max-w-[220px] space-y-1.5">
-            <p className="text-sm font-semibold">nrupa / Amogh Nagaraj</p>
+            <p className="text-sm font-semibold">mandakini / Amogh Nagaraj</p>
             <p className="-ml-0.5 font-mono text-xs tracking-wide text-[var(--muted)]">Ship it. Own it. Optimize it.</p>
           </div>
         </aside>

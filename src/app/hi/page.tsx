@@ -10,7 +10,7 @@ import { getLastFmRecentTrack } from "@/lib/lastfm";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Hi | Nrupa",
+  title: "Hi | mandakini",
   description: "Crafting resilient backend systems and blazing-fast APIs. I obsess over clean architecture, type safety, and making things scale.",
 };
 
@@ -55,7 +55,7 @@ export default async function HiPage() {
     {
       company: "Polaris Inc.",
       roles: [
-        { title: "Software Engineer", period: "Aug 2027 - Present", location: "Bengaluru", employmentType: "Full-time" },
+        { title: "Software Engineer", period: "Jul 2027 - Present", location: "Bengaluru", employmentType: "Full-time" },
         { title: "Associate Software Engineer", period: "Jul 2025 - Jul 2027", location: "Bengaluru", employmentType: "Full-time" },
       ],
       bullets: [
@@ -146,10 +146,10 @@ export default async function HiPage() {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {[
-            { label: "LeetCode", sub: "nrupatunga", href: "https://leetcode.com/u/nrupatunga", color: "from-orange-500/15", logo: "/coding/leetcode.png" },
-            { label: "Codeforces", sub: "nrupa", href: "https://codeforces.com/profile/nrupa", color: "from-blue-500/15", logo: "/coding/codeforces.png" },
+            { label: "LeetCode", sub: "mandakinitunga", href: "https://leetcode.com/u/mandakinitunga", color: "from-orange-500/15", logo: "/coding/leetcode.png" },
+            { label: "Codeforces", sub: "mandakini", href: "https://codeforces.com/profile/mandakini", color: "from-blue-500/15", logo: "/coding/codeforces.png" },
             { label: "Deep-ML", sub: "Amogh AN", href: "https://www.deep-ml.com/profile/23XxjPqSMuRbG2Cof9HyDqIp5pU2", color: "from-indigo-500/15", logo: "/coding/deepml.png" },
-            { label: "TensorTonic", sub: "nrupatunga", href: "https://www.tensortonic.com/profile/nrupatunga", color: "from-violet-500/15", logo: "/coding/tensortonic.png" },
+            { label: "TensorTonic", sub: "mandakinitunga", href: "https://www.tensortonic.com/profile/mandakinitunga", color: "from-violet-500/15", logo: "/coding/tensortonic.png" },
             { label: "PaperCode", sub: "profile", href: "https://papercode.in/profile", color: "from-emerald-500/15", logo: "/coding/papercode.png" },
           ].map((p) => (
             <CometCard key={p.label} className="rounded-2xl">

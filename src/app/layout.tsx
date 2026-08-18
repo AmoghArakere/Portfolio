@@ -29,12 +29,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Amogh Nagaraj",
     description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
-    url: "https://www.nrupa.tech",
-    siteName: "nrupa",
+    url: "https://www.mandakini.tech",
+    siteName: "mandakini",
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@nrupa",
+    creator: "@mandakini",
   },
 };
 

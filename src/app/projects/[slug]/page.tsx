@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Project not found" };
-  return { title: `${project.name} | Projects | Nrupa`, description: project.description };
+  return { title: `${project.name} | Projects | mandakini`, description: project.description };
 }
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {

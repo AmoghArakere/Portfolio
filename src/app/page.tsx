@@ -3,16 +3,19 @@ import BlogCard from "@/components/BlogCard";
 import HomeHeroName from "@/components/HomeHeroName";
 import HomeContactActions from "@/components/HomeContactActions";
 import HomeWelcomeAvatar from "@/components/HomeWelcomeAvatar";
+import ActivityLog from "@/components/ActivityLog";
 import MovingBorderLink from "@/components/MovingBorderLink";
 import PageHeaderLabel from "@/components/PageHeaderLabel";
 import LastFmRecentTrack from "@/components/LastFmRecentTrack";
 import { getAllPosts } from "@/lib/mdx";
 import { getLastFmRecentTrack } from "@/lib/lastfm";
 import { getGithubContributions } from "@/lib/github";
+import { ACTIVITY_LOG_LIMIT } from "@/data/activityLog";
+import { getRecentActivityEntries } from "@/lib/activityLogStore";
 import { homeNameFont } from "@/lib/homeNameFont";
 
 export const metadata: Metadata = {
-  title: "Amogh Nagaraj | Nrupa",
+  title: "Amogh Nagaraj | mandakini",
   description: "Backend engineer specializing in Go and Rust, building distributed systems and scalable backends.",
 };
 
@@ -38,6 +41,8 @@ function ExternalLinkGlyph({ className }: { className?: string }) {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const latestPost = (await getAllPosts())[0];
   const githubUser = process.env.GITHUB_USERNAME ?? "AmoghArakere";
@@ -45,6 +50,7 @@ export default async function Home() {
     getLastFmRecentTrack(),
     getGithubContributions(githubUser),
   ]);
+  const recentActivity = await getRecentActivityEntries(ACTIVITY_LOG_LIMIT);
 
   const homeCard =
     "rounded-xl bg-[var(--surface)]/55 backdrop-blur-md transition-colors duration-200 hover:bg-[var(--surface)]/80";
@@ -55,7 +61,7 @@ export default async function Home() {
         <PageHeaderLabel label="home" />
         <HomeHeroName fontClassName={homeNameFont.className} />
         <div className="mt-1 flex items-center gap-3">
-          <p className="text-zinc-500 italic">nrupa</p>
+          <p className="text-zinc-500 italic">mandakini</p>
           <span className="h-px w-14 rounded-full bg-zinc-500/70" aria-hidden />
         </div>
         <div className="mt-6 grid gap-6 overflow-visible md:grid-cols-[1fr_240px] md:items-start">
@@ -92,6 +98,12 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {recentActivity.length > 0 ? (
+        <section>
+          <ActivityLog entries={recentActivity} />
+        </section>
+      ) : null}
 
       <section>
         <div className={`group ${homeCard}`}>

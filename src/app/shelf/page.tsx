@@ -4,7 +4,7 @@ import PageHeaderLabel from "@/components/PageHeaderLabel";
 import ShelfInteractive from "@/components/ShelfInteractive";
 
 export const metadata: Metadata = {
-  title: "Shelf | Nrupa",
+  title: "Shelf | mandakini",
   description: "Books, papers, posts, and videos on my reading rack.",
 };
 

@@ -4,7 +4,7 @@ import CardSpotlight from "@/components/CardSpotlight";
 import PageHeaderLabel from "@/components/PageHeaderLabel";
 
 export const metadata: Metadata = {
-  title: "Contact | Nrupa",
+  title: "Contact | mandakini",
   description: "Get in touch for collaborations and opportunities.",
 };
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
               <a href="https://github.com/AmoghArakere" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
                 GitHub
               </a>
-              <a href="https://twitter.com/nrupatungaa" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
+              <a href="https://twitter.com/mandakinitungaa" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">
                 Twitter
               </a>
               <a href="https://linkedin.com/in/amogh07/" rel="noreferrer" className="text-indigo-300 !no-underline hover:!no-underline hover:!text-indigo-200">

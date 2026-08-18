@@ -5,10 +5,10 @@ export default function Footer() {
         <span className="shrink-0 self-end">© 2026 Amogh Nagaraj. All rights reserved.</span>
         <div className="flex flex-col items-start gap-2 sm:items-end">
           <div className="flex flex-wrap gap-4">
-            <a href="https://github.com/nrupa" target="_blank" rel="noreferrer" className="!no-underline hover:!no-underline">
+            <a href="https://github.com/mandakini" target="_blank" rel="noreferrer" className="!no-underline hover:!no-underline">
               GitHub
             </a>
-            <a href="https://twitter.com/nrupa" target="_blank" rel="noreferrer" className="!no-underline hover:!no-underline">
+            <a href="https://twitter.com/mandakini" target="_blank" rel="noreferrer" className="!no-underline hover:!no-underline">
               Twitter
             </a>
             <a
