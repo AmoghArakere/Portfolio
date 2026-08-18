@@ -17,6 +17,26 @@ const LOG_FILE = path.join(process.cwd(), "data", "activity-log.json");
 const GITHUB_REPO = process.env.GITHUB_REPO ?? "AmoghArakere/Portfolio";
 const GITHUB_PATH = "data/activity-log.json";
 
+/** Activity `date` is a calendar day; `createdAt` must not fall before that day (UTC). */
+function activityDayStartUtc(date: string): Date {
+  return new Date(`${date}T00:00:00.000Z`);
+}
+
+export function createdAtForActivityDate(activityDate: string, now = new Date()): string {
+  const dayStart = activityDayStartUtc(activityDate);
+  return (now.getTime() < dayStart.getTime() ? dayStart : now).toISOString();
+}
+
+function normalizeEntry(entry: ActivityEntry): ActivityEntry {
+  const createdAt = createdAtForActivityDate(entry.date, new Date(entry.createdAt));
+  if (entry.createdAt === createdAt) return entry;
+  return { ...entry, createdAt };
+}
+
+function normalizeLog(log: ActivityLogFile): ActivityLogFile {
+  return { entries: log.entries.map(normalizeEntry) };
+}
+
 function emptyLog(): ActivityLogFile {
   return { entries: [] };
 }
@@ -25,7 +45,7 @@ function parseLog(raw: string): ActivityLogFile {
   try {
     const parsed = JSON.parse(raw) as ActivityLogFile;
     if (!Array.isArray(parsed.entries)) return emptyLog();
-    return parsed;
+    return normalizeLog(parsed);
   } catch {
     return emptyLog();
   }
@@ -137,7 +157,7 @@ export async function addActivityEntry(input: NewActivityEntry): Promise<Activit
   const log = await readLog();
   const entry: ActivityEntry = {
     id: randomUUID(),
-    createdAt: new Date().toISOString(),
+    createdAt: createdAtForActivityDate(input.date),
     ...input,
   };
 
