@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "c03b0f2d-3120-4cb2-ad85-666e9b23283f",
+      "createdAt": "2026-08-18T18:43:28.954Z",
+      "date": "2026-08-19",
+      "type": "read",
+      "title": "How Claude’s text watermark works",
+      "url": "https://www.anthropic.com/news/claude-text-watermark"
+    },
+    {
       "id": "f75a4172-69bd-495b-a90d-7ba38548b05c",
       "createdAt": "2026-08-18T17:45:30.584Z",
       "date": "2026-08-18",
