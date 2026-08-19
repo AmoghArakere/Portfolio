@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "6af7ab91-8fa2-4194-9dc7-e999491fb967",
+      "createdAt": "2026-08-19T11:07:15.572Z",
+      "date": "2026-08-19",
+      "type": "watched",
+      "title": "7 Cryptography Concepts EVERY Developer Should Know",
+      "url": "https://youtu.be/NuyzuNBFWxQ"
+    },
+    {
       "id": "4ab04218-27d1-436d-a75e-138edb58fa04",
       "createdAt": "2026-08-19T05:44:07.526Z",
       "date": "2026-08-19",
