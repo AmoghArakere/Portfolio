@@ -6,8 +6,8 @@ import type { ActivityEntry, ActivityEntryType } from "@/data/activityLog";
 
 const typeOptions: { value: ActivityEntryType; label: string }[] = [
   { value: "read", label: "Read" },
-  { value: "work", label: "Work" },
-  { value: "build", label: "Build" },
+  { value: "watched", label: "Watched" },
+  { value: "building", label: "Building" },
 ];
 
 function todayIsoDate() {
@@ -189,7 +189,7 @@ export default function ActivityLogAdmin() {
               id="log-type"
               value={type}
               onChange={(event) => setType(event.target.value as ActivityEntryType)}
-              className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm outline-none focus:border-indigo-400/50"
+              className="w-full rounded-lg border border-white/10 bg-[#1e1e2e] px-3 py-2 text-sm text-white outline-none focus:border-indigo-400/50 [&>option]:bg-[#1e1e2e] [&>option]:text-white"
             >
               {typeOptions.map((option) => (
                 <option key={option.value} value={option.value}>

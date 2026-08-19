@@ -1,4 +1,4 @@
-export type ActivityEntryType = "read" | "work" | "build";
+export type ActivityEntryType = "read" | "watched" | "building";
 
 export type ActivityEntry = {
   id: string;

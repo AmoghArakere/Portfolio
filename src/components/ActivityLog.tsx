@@ -1,15 +1,17 @@
+import Link from "next/link";
+
 import type { ActivityEntry, ActivityEntryType } from "@/data/activityLog";
 
 const typeLabels: Record<ActivityEntryType, string> = {
   read: "Read",
-  work: "Work",
-  build: "Build",
+  watched: "Watched",
+  building: "Building",
 };
 
 const typeStyles: Record<ActivityEntryType, string> = {
   read: "bg-teal-500/15 text-teal-300",
-  work: "bg-indigo-500/15 text-indigo-300",
-  build: "bg-amber-500/15 text-amber-300",
+  watched: "bg-violet-500/15 text-violet-300",
+  building: "bg-amber-500/15 text-amber-300",
 };
 
 function formatDate(date: string) {
@@ -21,17 +23,26 @@ function formatDate(date: string) {
 
 type ActivityLogProps = {
   entries: ActivityEntry[];
+  showViewAll?: boolean;
 };
 
-export default function ActivityLog({ entries }: ActivityLogProps) {
+export default function ActivityLog({ entries, showViewAll = true }: ActivityLogProps) {
   if (entries.length === 0) return null;
 
   return (
     <div className="group overflow-hidden rounded-xl bg-[var(--surface)]/55 backdrop-blur-md transition-colors duration-200 hover:bg-[var(--surface)]/80">
-      <div className="px-4 pb-2 pt-4">
+      <div className="flex items-center justify-between px-4 pb-2 pt-4">
         <h2 className="text-[10px] font-semibold uppercase leading-none tracking-[0.18em] text-[var(--muted)] transition-colors duration-200 group-hover:text-[var(--muted-hover)]">
           Recent
         </h2>
+        {showViewAll && (
+          <Link
+            href="/activity"
+            className="text-[10px] font-medium text-[var(--muted)] !no-underline transition-colors hover:text-indigo-300 hover:!no-underline"
+          >
+            View all →
+          </Link>
+        )}
       </div>
       <ul className="divide-y divide-white/5">
         {entries.map((entry) => (

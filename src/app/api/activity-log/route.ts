@@ -9,7 +9,7 @@ import {
   getActivityEntries,
 } from "@/lib/activityLogStore";
 
-const VALID_TYPES: ActivityEntryType[] = ["read", "work", "build"];
+const VALID_TYPES: ActivityEntryType[] = ["read", "watched", "building"];
 
 function unauthorized() {
   return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
