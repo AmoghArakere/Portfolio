@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "35d4cae7-34aa-464d-82d7-fa224efb026d",
+      "createdAt": "2026-08-20T00:00:00.000Z",
+      "date": "2026-08-20",
+      "type": "watched",
+      "title": "MCP vs API: Why traditional APIs are failing AI agents",
+      "url": "https://youtu.be/185XGEMefgc"
+    },
+    {
       "id": "6af7ab91-8fa2-4194-9dc7-e999491fb967",
       "createdAt": "2026-08-19T11:07:15.572Z",
       "date": "2026-08-19",
