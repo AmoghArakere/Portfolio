@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "7b0acd52-ad3b-44f7-8eca-05bee2fc1aa5",
+      "createdAt": "2026-08-25T05:21:19.177Z",
+      "date": "2026-08-25",
+      "type": "watched",
+      "title": "This Is What Running a $2B AI Startup Looks Like",
+      "url": "https://youtu.be/fhs7voB2eJQ"
+    },
+    {
       "id": "35d4cae7-34aa-464d-82d7-fa224efb026d",
       "createdAt": "2026-08-20T00:00:00.000Z",
       "date": "2026-08-20",
