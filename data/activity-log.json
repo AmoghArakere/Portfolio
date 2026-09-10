@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "a3e43459-dcdd-47b0-b498-ae1781aba7e5",
+      "createdAt": "2026-09-11T00:00:00.000Z",
+      "date": "2026-09-11",
+      "type": "watched",
+      "title": "Testing for Backend Engineers: mocks, TDD and coverage",
+      "url": "https://youtu.be/HgVrfHX92y4"
+    },
+    {
       "id": "532711b5-d548-4b60-9f31-4518133ecf28",
       "createdAt": "2026-09-10T08:09:55.081Z",
       "date": "2026-09-10",
