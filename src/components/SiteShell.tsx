@@ -11,7 +11,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isBlog = pathname.startsWith("/blog");
   const isContact = pathname === "/contact";
   const isShelf = pathname.startsWith("/shelf");
-  const isCli = pathname.startsWith("/cli");
   const isAbout = pathname.startsWith("/about");
   const isProjects = pathname.startsWith("/projects");
   const isHome = pathname === "/";
@@ -43,9 +42,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                   ? "max-w-[1150px]"
                   : isHome
                     ? "max-w-[760px]"
-                : isCli
-                  ? "max-w-[960px]"
-                  : "max-w-[680px]"
+                    : "max-w-[680px]"
         } relative z-10 mx-auto w-full bg-transparent overflow-visible px-6 pt-[4.25rem] ${isShelf ? "pb-6" : "pb-12"} animate-fade-in`}
       >
         {children}

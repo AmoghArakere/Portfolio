@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import BlogCard from "@/components/BlogCard";
 import HomeHeroName from "@/components/HomeHeroName";
 import HomeContactActions from "@/components/HomeContactActions";
 import HomeWelcomeAvatar from "@/components/HomeWelcomeAvatar";
@@ -7,7 +6,6 @@ import ActivityLog from "@/components/ActivityLog";
 import MovingBorderLink from "@/components/MovingBorderLink";
 import PageHeaderLabel from "@/components/PageHeaderLabel";
 import LastFmRecentTrack from "@/components/LastFmRecentTrack";
-import { getAllPosts } from "@/lib/mdx";
 import { getLastFmRecentTrack } from "@/lib/lastfm";
 import { getGithubContributions } from "@/lib/github";
 import { ACTIVITY_LOG_LIMIT } from "@/data/activityLog";
@@ -44,7 +42,6 @@ function ExternalLinkGlyph({ className }: { className?: string }) {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const latestPost = (await getAllPosts())[0];
   const githubUser = process.env.GITHUB_USERNAME ?? "AmoghArakere";
   const [lastfmResult, contributions] = await Promise.all([
     getLastFmRecentTrack(),
