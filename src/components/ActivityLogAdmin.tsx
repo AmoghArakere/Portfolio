@@ -2,13 +2,9 @@
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 
+import LogDatePicker from "@/components/LogDatePicker";
+import LogTypeSelect from "@/components/LogTypeSelect";
 import type { ActivityEntry, ActivityEntryType } from "@/data/activityLog";
-
-const typeOptions: { value: ActivityEntryType; label: string }[] = [
-  { value: "read", label: "Read" },
-  { value: "watched", label: "Watched" },
-  { value: "building", label: "Building" },
-];
 
 function todayIsoDate() {
   return new Date().toISOString().slice(0, 10);
@@ -172,31 +168,13 @@ export default function ActivityLogAdmin() {
             <label htmlFor="log-date" className="mb-1.5 block text-sm font-semibold">
               Date
             </label>
-            <input
-              id="log-date"
-              type="date"
-              value={date}
-              onChange={(event) => setDate(event.target.value)}
-              className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm outline-none focus:border-indigo-400/50"
-              required
-            />
+            <LogDatePicker id="log-date" value={date} onChange={setDate} required />
           </div>
           <div>
             <label htmlFor="log-type" className="mb-1.5 block text-sm font-semibold">
               Type
             </label>
-            <select
-              id="log-type"
-              value={type}
-              onChange={(event) => setType(event.target.value as ActivityEntryType)}
-              className="w-full rounded-lg border border-white/10 bg-[#1e1e2e] px-3 py-2 text-sm text-white outline-none focus:border-indigo-400/50 [&>option]:bg-[#1e1e2e] [&>option]:text-white"
-            >
-              {typeOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <LogTypeSelect id="log-type" value={type} onChange={setType} />
           </div>
         </div>
         <div>
@@ -242,7 +220,7 @@ export default function ActivityLogAdmin() {
         <button
           type="submit"
           disabled={busy}
-          className="rounded-lg border border-white/10 bg-indigo-500/20 px-4 py-2 text-sm font-semibold text-indigo-200 transition hover:bg-indigo-500/30 disabled:opacity-60"
+          className="log-add-btn rounded-lg border border-indigo-400/30 bg-indigo-500/20 px-4 py-2 text-sm font-semibold text-[var(--accent-indigo)] transition hover:bg-indigo-500/30 disabled:opacity-60"
         >
           {busy ? "Saving…" : "Add to log"}
         </button>

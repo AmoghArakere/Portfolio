@@ -55,9 +55,9 @@ export default function ActivityLog({ entries, showViewAll = true }: ActivityLog
                 {formatDate(entry.date)}
               </time>
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex min-w-0 items-center gap-2">
                   <span
-                    className={`rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${typeStyles[entry.type]}`}
+                    className={`inline-flex w-[4.75rem] shrink-0 items-center justify-center rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${typeStyles[entry.type]}`}
                   >
                     {typeLabels[entry.type]}
                   </span>
@@ -66,12 +66,14 @@ export default function ActivityLog({ entries, showViewAll = true }: ActivityLog
                       href={entry.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="truncate text-sm font-medium text-[var(--text)] !no-underline hover:!no-underline hover:text-indigo-300"
+                      className="min-w-0 truncate text-sm font-medium leading-none text-[var(--text)] !no-underline hover:!no-underline hover:text-indigo-300"
                     >
                       {entry.title}
                     </a>
                   ) : (
-                    <span className="truncate text-sm font-medium text-[var(--text)]">{entry.title}</span>
+                    <span className="min-w-0 truncate text-sm font-medium leading-none text-[var(--text)]">
+                      {entry.title}
+                    </span>
                   )}
                 </div>
                 {entry.detail ? (
