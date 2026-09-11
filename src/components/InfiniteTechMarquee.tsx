@@ -10,6 +10,8 @@ type TechMarqueeItem = {
   label: string;
   /** optional static asset under /public (e.g. /tech/azure.png) */
   localIcon?: string;
+  /** white/light icons that need inversion on light-mode pills */
+  invertInLight?: boolean;
 };
 
 const DEFAULT_ITEMS: TechMarqueeItem[] = [
@@ -22,8 +24,10 @@ const DEFAULT_ITEMS: TechMarqueeItem[] = [
   { iconSlug: "dotnet", iconColor: "512BD4", label: ".NET Core" },
   { iconSlug: "python", iconColor: "3776AB", label: "Python" },
   { iconSlug: "claude", iconColor: "D97757", label: "Claude", localIcon: "/tech/claude.png" },
+  { iconSlug: "cursor", iconColor: "FFFFFF", label: "Cursor", invertInLight: true },
+  { iconSlug: "wisprflow", iconColor: "FFFFFF", label: "WisprFlow", localIcon: "/tech/wisprflow.png" },
   { iconSlug: "postman", iconColor: "FF6C37", label: "Postman" },
-  { iconSlug: "apachekafka", iconColor: "D2D2D2", label: "Kafka" },
+  { iconSlug: "apachekafka", iconColor: "D2D2D2", label: "Kafka", invertInLight: true },
   { iconSlug: "git", iconColor: "F05032", label: "Git" },
 ];
 
@@ -42,7 +46,7 @@ function TechPill({ item }: { item: TechMarqueeItem }) {
         alt=""
         width={20}
         height={20}
-        className={`size-5 shrink-0 object-contain ${item.localIcon === "/tech/claude.png" ? "rounded-[4px]" : ""}`}
+        className={`size-5 shrink-0 object-contain ${item.invertInLight ? "hi-tech-pill-icon-invert" : ""} ${item.localIcon === "/tech/claude.png" || item.localIcon === "/tech/wisprflow.png" ? "rounded-[4px]" : ""}`}
         loading="lazy"
         decoding="async"
       />

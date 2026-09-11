@@ -4,6 +4,7 @@ import LiveClock from "@/components/LiveClock";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -52,6 +53,9 @@ export default function Navbar() {
   const trackRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const themeButtonRef = useRef<HTMLButtonElement>(null);
+  // Rapid toggles overlap: only the last one may re-enable colour transitions.
+  const revealCount = useRef(0);
   const [hovered, setHovered] = useState<number | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -60,16 +64,69 @@ export default function Navbar() {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      const root = document.documentElement;
+    const root = document.documentElement;
+    const next = root.classList.contains("light") ? "dark" : "light";
+
+    const applyTheme = () => {
+      flushSync(() => setTheme(next));
       root.classList.toggle("light", next === "light");
       try {
         window.localStorage.setItem("theme", next);
       } catch {
         // ignore storage failures (private mode, etc.)
       }
-      return next;
+    };
+
+    const button = themeButtonRef.current;
+    const canReveal =
+      typeof document.startViewTransition === "function" &&
+      button !== null &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!canReveal) {
+      applyTheme();
+      return;
+    }
+
+    const { left, top, width, height } = button.getBoundingClientRect();
+    const originX = left + width / 2;
+    const originY = top + height / 2;
+    const reach = Math.hypot(
+      Math.max(originX, window.innerWidth - originX),
+      Math.max(originY, window.innerHeight - originY),
+    );
+
+    // The site's colour transitions would soften the leading edge of the reveal.
+    root.classList.add("theme-switching");
+
+    const transition = document.startViewTransition(applyTheme);
+
+    transition.ready
+      .then(() => {
+        root.animate(
+          {
+            clipPath: [
+              `circle(0px at ${originX}px ${originY}px)`,
+              `circle(${reach}px at ${originX}px ${originY}px)`,
+            ],
+          },
+          {
+            duration: 620,
+            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+            pseudoElement: "::view-transition-new(root)",
+          },
+        );
+      })
+      .catch(() => {
+        // a superseded transition rejects; the theme is still applied
+      });
+
+    revealCount.current += 1;
+    transition.finished.finally(() => {
+      revealCount.current -= 1;
+      if (revealCount.current === 0) {
+        root.classList.remove("theme-switching");
+      }
     });
   }, []);
 
@@ -173,6 +230,7 @@ export default function Navbar() {
         <div className="h-4 w-px shrink-0 bg-[var(--nav-divider)] transition-colors duration-300" aria-hidden />
 
         <button
+          ref={themeButtonRef}
           type="button"
           onClick={toggleTheme}
           className="flex shrink-0 items-center justify-center rounded-full border border-transparent p-1 text-[var(--nav-muted)] transition-colors duration-200 hover:border-white/10 hover:bg-[var(--nav-pill)] hover:text-[var(--nav-muted-hover)]"

@@ -59,12 +59,6 @@ export default function HomeContactActions() {
             Copied
           </span>
         </div>
-        <Link
-          href="/cli"
-          className="!text-[var(--home-link)] visited:!text-[var(--home-link)] transition-colors duration-200 hover:!text-[var(--home-link-hover)] !no-underline hover:!no-underline"
-        >
-          &gt;_ CLI
-        </Link>
       </div>
     </div>
   );

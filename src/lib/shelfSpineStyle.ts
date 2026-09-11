@@ -47,31 +47,25 @@ const CATEGORY_SHELF_THEMES: Record<string, CategoryShelfTheme> = {
     railBg: "linear-gradient(180deg, #5a3c24 0%, #3b2618 48%, #26180f 100%)",
     railEdge: "#8a623f",
     rowShadow: "0 10px 24px rgba(10, 24, 48, 0.35)",
-    labelClass: "text-white",
+    labelClass: "text-[var(--text)]",
   },
   lang: {
     railBg: "linear-gradient(180deg, #654229 0%, #442a19 48%, #2a1a10 100%)",
     railEdge: "#956948",
     rowShadow: "0 10px 22px rgba(48, 24, 8, 0.38)",
-    labelClass: "text-white",
+    labelClass: "text-[var(--text)]",
   },
   cs: {
     railBg: "linear-gradient(180deg, #5e3c24 0%, #3d2818 48%, #26190f 100%)",
     railEdge: "#8f6544",
     rowShadow: "0 10px 22px rgba(24, 8, 40, 0.4)",
-    labelClass: "text-white",
+    labelClass: "text-[var(--text)]",
   },
   blog: {
     railBg: "linear-gradient(180deg, #664328 0%, #432a19 48%, #291a10 100%)",
     railEdge: "#9a6f48",
     rowShadow: "0 10px 22px rgba(8, 32, 20, 0.42)",
-    labelClass: "text-white",
-  },
-  vid: {
-    railBg: "linear-gradient(180deg, #70472a 0%, #4a2e1b 48%, #2d1b10 100%)",
-    railEdge: "#a7774d",
-    rowShadow: "0 10px 24px rgba(40, 20, 6, 0.45)",
-    labelClass: "text-white",
+    labelClass: "text-[var(--text)]",
   },
 };
 

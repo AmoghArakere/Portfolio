@@ -243,6 +243,7 @@ function ExpandableBookCard({ item }: { item: ShelfInteractiveItem }) {
 export default function ShelfInteractive() {
   const [sel, setSel] = useState<{ sectionId: string; index: number } | null>(null);
   const [readerFrame, setReaderFrame] = useState(0);
+  const [showReader, setShowReader] = useState(false);
   const [paperTooltip, setPaperTooltip] = useState<string | null>(null);
   const [paperTooltipCard, setPaperTooltipCard] = useState<{
     key: string;
@@ -287,7 +288,23 @@ export default function ShelfInteractive() {
   }, [sel, visibleSections]);
 
   useEffect(() => {
-    // Preload all frames once so none get skipped on first loops.
+    const root = document.documentElement;
+
+    const syncTheme = () => {
+      setShowReader(!root.classList.contains("light"));
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!showReader) return;
+
     shelfReaderFrames.forEach((src) => {
       const img = new window.Image();
       img.src = src;
@@ -298,11 +315,11 @@ export default function ShelfInteractive() {
     }, 2400);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [showReader]);
 
   return (
     <div className="max-w-full py-0 font-mono">
-      <h2 className="sr-only">Interactive shelf — books, papers, blog posts, and videos</h2>
+      <h2 className="sr-only">Interactive shelf — books, papers, and blog posts</h2>
 
       {visibleSections.map((section) => {
         const catTheme = getCategoryTheme(section.id);
@@ -310,7 +327,7 @@ export default function ShelfInteractive() {
           <div key={section.id} className="relative mb-9" data-shelf-section={section.id}>
             <div className="mb-2 flex items-baseline justify-between">
               <span
-                className={`text-[11px] tracking-wide text-[var(--muted)] transition-colors ${catTheme.labelClass}`}
+                className={`text-[11px] font-medium tracking-wide transition-colors ${catTheme.labelClass}`}
               >
                 {section.label}
               </span>
@@ -408,7 +425,7 @@ export default function ShelfInteractive() {
                 );
               })}
             </div>
-            {section.id === "cs" ? (
+            {section.id === "cs" && showReader ? (
               <div className="pointer-events-none absolute bottom-0 right-24 z-40 flex items-end">
                 <Image
                   src={shelfReaderFrames[readerFrame]}

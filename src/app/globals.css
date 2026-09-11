@@ -10,6 +10,7 @@
 }
 
 :root {
+  color-scheme: dark;
   --bg: #0a0a0a;
   --surface: #111111;
   --border: oklch(0.922 0 0);
@@ -91,7 +92,22 @@
   --chat-icon-dot: #5f6670;
 }
 
+/* Date-picker: hide the native calendar indicator and use a custom SVG overlay
+   instead — the native indicator is invisible in dark mode in some
+   Chromium/Electron versions and ignores filter/opacity CSS. */
+:root {
+  color-scheme: dark;
+}
+::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
 html.light {
+  color-scheme: light;
   --bg: #f7f7f8;
   --surface: #ffffff;
   --border: #d8d8dd;
@@ -119,11 +135,11 @@ html.light {
   --contact-panel-border: #d1d5db;
   --input-placeholder: #a8b0bd;
   --contrib-empty: #e5e7eb;
-  --accent-indigo: #4f46e5;
+  --accent-indigo: #3a4f6f;
   --home-link: #5c6270;
   --home-link-hover: #151923;
-  --scrollbar-thumb: rgba(79, 70, 229, 0.55);
-  --scrollbar-thumb-hover: rgba(79, 70, 229, 0.78);
+  --scrollbar-thumb: rgba(58, 79, 111, 0.5);
+  --scrollbar-thumb-hover: rgba(58, 79, 111, 0.75);
   --scrollbar-track: rgba(15, 23, 42, 0.08);
   --chat-panel-bg: #ffffff;
   --chat-panel-border: #d1d5db;
@@ -132,19 +148,136 @@ html.light {
   --chat-panel-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
   --chat-fab-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
   --chat-fab-hover: #ececf0;
-  --chat-user-bg: rgba(79, 70, 229, 0.12);
-  --chat-user-border: rgba(79, 70, 229, 0.28);
-  --chat-user-text: #3730a3;
+  --chat-user-bg: rgba(58, 79, 111, 0.1);
+  --chat-user-border: rgba(58, 79, 111, 0.28);
+  --chat-user-text: #2c3e57;
   --chat-icon-fill: #b4bac4;
   --chat-icon-dot: #9aa3b0;
 }
 
-/* Indigo emphasis/links adapt to a higher-contrast tone in light mode */
-html.light .text-indigo-300 {
+/* Theme switch — the new theme is revealed by a circle growing out of the
+   navbar toggle, so the default crossfade is replaced by a hard stack. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* Emphasis/links adapt to the light-mode accent (teal, not indigo) */
+html.light .text-indigo-300,
+html.light .text-indigo-200,
+html.light .text-indigo-400 {
   color: var(--accent-indigo);
+}
+html.light .hover\:text-indigo-300:hover,
+html.light .hover\:text-indigo-200:hover {
+  color: color-mix(in oklab, var(--accent-indigo) 82%, black);
+}
+html.light .border-indigo-300\/40,
+html.light .border-indigo-300\/35,
+html.light .border-indigo-300\/30,
+html.light .border-indigo-400\/30,
+html.light .border-indigo-400\/35,
+html.light .border-indigo-400\/45 {
+  border-color: color-mix(in oklab, var(--accent-indigo) 40%, transparent);
+}
+html.light .bg-indigo-500\/10,
+html.light .bg-indigo-500\/20,
+html.light .bg-indigo-400\/10 {
+  background: color-mix(in oklab, var(--accent-indigo) 12%, transparent);
+}
+html.light .hover\:bg-indigo-500\/20:hover,
+html.light .hover\:bg-indigo-500\/30:hover,
+html.light .hover\:bg-indigo-400\/20:hover {
+  background: color-mix(in oklab, var(--accent-indigo) 20%, transparent);
+}
+html.light .bg-indigo-300,
+html.light .bg-indigo-400 {
+  background: var(--accent-indigo);
+}
+html.light .text-indigo-950 {
+  color: #ecfdf5;
+}
+html.light .hover\:bg-indigo-200:hover,
+html.light .hover\:bg-indigo-300:hover {
+  background: color-mix(in oklab, var(--accent-indigo) 88%, black);
 }
 html.light .border-white\/10 {
   border-color: rgba(15, 23, 42, 0.1);
+}
+html.light .log-add-btn {
+  background: #5c6370;
+  border-color: #5c6370;
+  color: #ffffff;
+}
+html.light .log-add-btn:hover {
+  background: #4a5160;
+  border-color: #4a5160;
+}
+
+.log-control-panel {
+  background: color-mix(in oklab, var(--surface) 92%, black);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+html.light .log-control-panel {
+  background: color-mix(in oklab, var(--surface) 94%, white);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+html.light .log-control-trigger {
+  background: #e8eaed;
+  border-color: rgba(15, 23, 42, 0.1);
+}
+html.light .log-control-trigger:hover {
+  border-color: rgba(15, 23, 42, 0.18);
+}
+html.light .text-teal-300 {
+  color: #3a4f6f;
+}
+html.light .text-violet-300 {
+  color: #6d28d9;
+}
+html.light .text-amber-300 {
+  color: #b45309;
+}
+html.light .bg-teal-500\/15 {
+  background: rgba(58, 79, 111, 0.12);
+}
+html.light .bg-violet-500\/15 {
+  background: rgba(139, 92, 246, 0.16);
+}
+html.light .bg-amber-500\/15 {
+  background: rgba(245, 158, 11, 0.18);
+}
+html.light .hover\:bg-white\/5:hover {
+  background: rgba(15, 23, 42, 0.05);
+}
+html.light .hover\:bg-white\/10:hover,
+html.light .bg-white\/10 {
+  background: rgba(15, 23, 42, 0.08);
 }
 
 @theme inline {
@@ -524,6 +657,9 @@ html.light .hi-tech-pill {
   background-color: #f4f4f5;
   color: #18181b;
 }
+html.light .hi-tech-pill-icon-invert {
+  filter: invert(1);
+}
 
 /* Home "Now" cards — theme-aware tinted glass (dark defaults, light overrides) */
 .now-card {
@@ -581,6 +717,9 @@ html.light .border-hairline {
 }
 html.light .shelf-row {
   box-shadow: none;
+}
+html.light .shelf-reader {
+  display: none;
 }
 
 /* Starfield + shooting stars are a dark-mode ambience only */

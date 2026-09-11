@@ -5,7 +5,7 @@ import ShelfInteractive from "@/components/ShelfInteractive";
 
 export const metadata: Metadata = {
   title: "Shelf | mandakini",
-  description: "Books, papers, posts, and videos on my reading rack.",
+  description: "Books, papers, and posts on my reading rack.",
 };
 
 export default function ShelfPage() {
@@ -14,7 +14,7 @@ export default function ShelfPage() {
       <section>
         <PageHeaderLabel label="shelf" />
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--muted)]">
-          Books, papers, blogs, and videos worth your time.
+          Books, papers, and blogs worth your time.
         </p>
       </section>
       <ShelfInteractive />

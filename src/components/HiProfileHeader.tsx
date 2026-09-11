@@ -48,17 +48,6 @@ function LinkedInIcon() {
   );
 }
 
-function SubstackIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="block h-[13px] w-[13px] shrink-0" aria-hidden>
-      <path
-        fill="currentColor"
-        d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46z"
-      />
-    </svg>
-  );
-}
-
 /**
  * Twitter-style cover + avatar overlapping the bottom-left of the banner.
  * Place images at `public/hi/banner.png` and `public/hi/avatar.png`.
@@ -198,7 +187,6 @@ export default function HiProfileHeader() {
             { label: "GitHub", href: "https://github.com/AmoghArakere", icon: <GithubIcon /> },
             { label: "Twitter", href: "https://twitter.com/mandakinitungaa", icon: <XIcon /> },
             { label: "LinkedIn", href: "https://linkedin.com/in/amogh07/", icon: <LinkedInIcon /> },
-            { label: "Substack", href: "https://substack.com/@voiceofbrown", icon: <SubstackIcon /> },
           ].map((item) => (
             <a
               key={item.label}

@@ -83,7 +83,7 @@ export default async function HiPage() {
     "rounded-xl bg-[var(--surface)]/55 backdrop-blur-md transition-colors duration-200 hover:bg-[var(--surface)]/80";
 
   return (
-    <div className="-mt-8 space-y-5 sm:-mt-10">
+    <div className="mt-1 space-y-5 sm:mt-2">
       <HiProfileHeader />
 
       <section className="-ml-6 space-y-2 pt-2 sm:-ml-3" aria-label="Tech stack marquee">

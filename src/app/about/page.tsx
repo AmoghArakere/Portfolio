@@ -14,9 +14,9 @@ const stackRows = [
   ["Data & Storage", "PostgreSQL, Redis, MongoDB, Elasticsearch, ClickHouse, Kafka, Azure Service Bus"],
   ["Infrastructure & Observability", "Docker, Prometheus, Grafana, OpenTelemetry, Loki, App Insights"],
   ["Cloud", "Azure Functions, Azure APIM, Azure Storage, Azure App Service, Azure DevOps Services"],
-  ["Frontend", "React, JavaScript"],
-  ["AI & LLM", "LangChain, LangGraph, Cursor, Claude Code, Codex, OpenCode, Kimi Code, Pinecone"],
-  ["Tools", "Git, Postman, Black Duck, ServiceNow"],
+  ["Frontend", "React, Angular, JavaScript"],
+  ["AI & LLM", "LangChain, LangGraph, Cursor"],
+  ["Tools", "Git, Postman, Black Duck, ServiceNow, SonarQube"],
 ];
 
 export default function AboutPage() {
@@ -32,9 +32,9 @@ export default function AboutPage() {
         <aside className="lg:sticky lg:top-24 lg:self-start">
 
           <Image src="/hi/avatar.png" className="h-48 w-48 rounded-xl object-cover object-[50%_18%]" alt="Amogh" width={192} height={192} />
-          <div className="mt-4 max-w-[220px] space-y-1.5">
-            <p className="text-sm font-semibold">mandakini / Amogh Nagaraj</p>
-            <p className="-ml-0.5 font-mono text-xs tracking-wide text-[var(--muted)]">Ship it. Own it. Optimize it.</p>
+          <div className="mt-4 w-48 space-y-1.5 text-center">
+            <p className="text-sm font-semibold">Amogh Nagaraj</p>
+            <p className="whitespace-nowrap font-mono text-[11px] tracking-wide text-[var(--muted)]">Ship it. Own it. Optimize it.</p>
           </div>
         </aside>
 

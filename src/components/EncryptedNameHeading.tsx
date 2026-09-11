@@ -71,7 +71,9 @@ export default function EncryptedNameHeading({
           <span
             key={key}
             className={
-              isReal ? "text-white" : "text-white/40 transition-colors duration-75"
+              isReal
+                ? "text-[var(--text)]"
+                : "text-[var(--muted)] transition-colors duration-75"
             }
           >
             {content}
