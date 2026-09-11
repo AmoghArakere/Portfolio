@@ -336,7 +336,7 @@ export async function POST(request: Request) {
 
     if (quotaBlocked) {
       return NextResponse.json({
-        answer: "uh-oh, mandakinibot is unavailable rn. try again in a bit",
+        answer: "uh-oh, mandabot is unavailable rn. try again in a bit",
         sources,
       } satisfies ChatResponseBody);
     }
