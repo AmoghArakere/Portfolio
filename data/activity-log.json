@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "ac63f351-4bfa-4c2a-b60e-ec6cc6dd454b",
+      "createdAt": "2026-09-12T00:00:00.000Z",
+      "date": "2026-09-12",
+      "type": "watched",
+      "title": "How Instagram Scaled Postgres to 2 Billion Users",
+      "url": "https://youtu.be/YLoYcwnqVzM"
+    },
+    {
       "id": "a3e43459-dcdd-47b0-b498-ae1781aba7e5",
       "createdAt": "2026-09-11T00:00:00.000Z",
       "date": "2026-09-11",
