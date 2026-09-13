@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "dfe13c49-4e08-4cd0-b5e0-2154e96f68f7",
+      "createdAt": "2026-09-13T18:25:47.667Z",
+      "date": "2026-09-13",
+      "type": "watched",
+      "title": "How macOS works",
+      "url": "https://youtu.be/UKr5KDHXBVc"
+    },
+    {
       "id": "ac63f351-4bfa-4c2a-b60e-ec6cc6dd454b",
       "createdAt": "2026-09-12T00:00:00.000Z",
       "date": "2026-09-12",
