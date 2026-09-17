@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "5bca24be-d3a2-42ca-be42-aa291cad09cd",
+      "createdAt": "2026-09-17T11:09:52.399Z",
+      "date": "2026-09-17",
+      "type": "building",
+      "title": "xUnit : Unit Testing Framework",
+      "detail": "Explored xUnit and created a small project to practice writing and running unit tests in .NET."
+    },
+    {
       "id": "dfe13c49-4e08-4cd0-b5e0-2154e96f68f7",
       "createdAt": "2026-09-13T18:25:47.667Z",
       "date": "2026-09-13",
